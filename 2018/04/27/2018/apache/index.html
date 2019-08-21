@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="本文假设读者具有一定的Linux命令行和python基础 运行环境 Centos-7.4 Anaconda-Python3.6.4 Django-2.0.4 httpd-2.4.33服务器为腾讯云服务器，httpd是Apache中的服务，安装httpd需要依赖apr、apr-util、pcrepython选用anaconda并且使用conda虚拟环境 Apache首先安装gcc编译器，gcc为编译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache Mod_wsgi Django Anaconda Python3 配置">
+<meta property="og:url" content="http://yoursite.com/2018/04/27/2018/apache/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文假设读者具有一定的Linux命令行和python基础 运行环境 Centos-7.4 Anaconda-Python3.6.4 Django-2.0.4 httpd-2.4.33服务器为腾讯云服务器，httpd是Apache中的服务，安装httpd需要依赖apr、apr-util、pcrepython选用anaconda并且使用conda虚拟环境 Apache首先安装gcc编译器，gcc为编译">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-11-27T10:39:32.636Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Apache Mod_wsgi Django Anaconda Python3 配置">
+<meta name="twitter:description" content="本文假设读者具有一定的Linux命令行和python基础 运行环境 Centos-7.4 Anaconda-Python3.6.4 Django-2.0.4 httpd-2.4.33服务器为腾讯云服务器，httpd是Apache中的服务，安装httpd需要依赖apr、apr-util、pcrepython选用anaconda并且使用conda虚拟环境 Apache首先安装gcc编译器，gcc为编译">
+  <link rel="canonical" href="http://yoursite.com/2018/04/27/2018/apache/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Apache Mod_wsgi Django Anaconda Python3 配置 | Hexo</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/27/2018/apache/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Apache Mod_wsgi Django Anaconda Python3 配置
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-04-27 16:07:07" itemprop="dateCreated datePublished" datetime="2018-04-27T16:07:07+08:00">2018-04-27</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-11-27 18:39:32" itemprop="dateModified" datetime="2018-11-27T18:39:32+08:00">2018-11-27</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/server/" itemprop="url" rel="index"><span itemprop="name">server</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><em>本文假设读者具有一定的Linux命令行和python基础</em></p>
+<p>运行环境</p>
+<pre><code>Centos-7.4
+Anaconda-Python3.6.4
+Django-2.0.4
+httpd-2.4.33</code></pre><p>服务器为腾讯云服务器，httpd是Apache中的服务，安装httpd需要依赖apr、apr-util、pcre<br>python选用anaconda并且使用conda虚拟环境</p>
+<h1 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h1><p>首先安装gcc编译器，gcc为编译必须，c++编译器和expat-devel依赖为pcre安装所必须</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc</span><br><span class="line">yum install gcc-c++</span><br><span class="line">yum install expat-devel</span><br></pre></td></tr></table></figure>
+
+<p>下载源码安装包，注意当使用apr-util，apr1.6版本编译安装httpd时出现xml错误，在/usr/local/httpd/目录下只有modules文件夹。因此1.6版本不适用于httpd的最新版，因此选用1.5版本</p>
+<p>选用<a href="https://mirrors.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">清华镜像</a>下载速度更快</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget http://archive.apache.org/dist/apr/apr-1.5.2.tar.gz</span><br><span class="line">wget http://archive.apache.org/dist/apr/apr-util-1.5.4.tar.gz</span><br><span class="line">wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.40.tar.gz</span><br><span class="line">wget https://mirrors.tuna.tsinghua.edu.cn/apache/httpd/httpd-2.4.33.tar.gz</span><br><span class="line">wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-5.1.0-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+
+<p>解压</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar -xzf pcre-8.40.tar.gz</span><br><span class="line">tar -xzf httpd-2.4.33.tar.gz</span><br><span class="line">tar -xzf apr-util-1.5.4.tar.gz</span><br><span class="line">tar -xzf apr-1.5.2.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">cd apr-1.5.2</span><br><span class="line">./configure --prefix=/usr/local/apr</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line">cd ../apr-util-1.5.4</span><br><span class="line">./configure --prefix=/usr/local/apr-util --with-apr=/usr/local/apr</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line">cd ../pcre-8.40</span><br><span class="line">./configure --prefix=/usr/local/pcre --with-apr=/usr/local/apr</span><br><span class="line"></span><br><span class="line">cd ../httpd-2.4.33</span><br><span class="line">./configure --prefix=/usr/local/httpd --with-pcre=/usr/local/pcre --with-apr=/usr/local/apr --with-apr-util=/usr/local/apr-util</span><br><span class="line">make </span><br><span class="line">make install </span><br><span class="line"></span><br><span class="line">cd ..</span><br><span class="line">bash Anaconda3-5.1.0-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+
+<p>将Anaconda命令和httpd启动命令添加到path</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br></pre></td></tr></table></figure>
+
+<p>在最后添加两行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export PATH=/usr/local/httpd/bin:$PATH</span><br><span class="line">export PATH=/root/anaconda3/bin:$PATH</span><br></pre></td></tr></table></figure>
+
+<p>使profile文件起作用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">. /etc/profile</span><br></pre></td></tr></table></figure>
+
+<p>注意.和/之间有个空格<br>试一下httpd行不行<br>输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httpd -k start</span><br></pre></td></tr></table></figure>
+
+<p>访问服务器的ip地址，可以看到页面显示it works</p>
+<p>相应的，重新启动和停止的命令为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">httpd -k restart</span><br><span class="line">httpd -k stop</span><br></pre></td></tr></table></figure>
+
+<h1 id="Python-Django"><a href="#Python-Django" class="headerlink" title="Python Django"></a>Python Django</h1><p>下面开始配置python django</p>
+<p>conda添加清华源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span><br><span class="line">conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure>
+
+<p>创建django安装的python3.6环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda create -n django python=3.6</span><br><span class="line">source activate django</span><br><span class="line">pip install django</span><br></pre></td></tr></table></figure>
+
+<p>安装mod_wsgi</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install mod_wsgi</span><br></pre></td></tr></table></figure>
+
+<p>获取mod_wsgi</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mod_wsgi-express module-config</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LoadModule wsgi_module &quot;/root/anaconda3/envs/django/lib/python3.6/site-packages/mod_wsgi/server/mod_wsgi-py36.cpython-36m-x86_64-linux-gnu.so&quot;</span><br><span class="line">WSGIPythonHome &quot;/root/anaconda3/envs/django&quot;</span><br></pre></td></tr></table></figure>
+
+<p>修改httpd配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/httpd/conf</span><br><span class="line">vim httpd.conf</span><br></pre></td></tr></table></figure>
+
+<p>LoadModule中添加一行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule wsgi_module &quot;/root/anaconda3/envs/django/lib/python3.6/site-packages/mod_wsgi/server/mod_wsgi-py36.cpython-36m-x86_64-linux-gnu.so&quot;</span><br></pre></td></tr></table></figure>
+
+<p>将这一行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Include conf/extra/httpd-vhosts.conf</span><br></pre></td></tr></table></figure>
+
+<p>取消注释<br>相应的修改httpd-vhosts.conf文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd extra</span><br><span class="line">vim httpd-vhosts.conf</span><br></pre></td></tr></table></figure>
+
+<p>全部注释掉之后添加下面部分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">WSGIPythonPath /root/anaconda3/envs/django/lib/python3.6/site-packages:/home/website</span><br><span class="line">WSGIPythonHome /root/anaconda3/envs/django</span><br><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">DocumentRoot /home/website/website</span><br><span class="line">ServerName localhost:80</span><br><span class="line">ServerAdmin jstsyhyjk@163.com</span><br><span class="line"></span><br><span class="line">WSGIScriptAlias / /home/website/website/wsgi.py</span><br><span class="line">Alias /static/ /home/website/static/</span><br><span class="line">&lt;Directory &quot;/home/website&quot;&gt;</span><br><span class="line">Require all granted</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+
+<p>先来看下我django项目的目录结构<br>这是/home/website内的文件树形图（已省略一部分无关内容）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">|-- db.sqlite3</span><br><span class="line">|-- manage.py</span><br><span class="line">|-- static</span><br><span class="line">|-- templates</span><br><span class="line">|   `-- index.html</span><br><span class="line">|-- website</span><br><span class="line">|   |-- __init__.py</span><br><span class="line">|   |-- settings.py</span><br><span class="line">|   |-- urls.py</span><br><span class="line">|   |-- view.py</span><br><span class="line">|   `-- wsgi.py</span><br></pre></td></tr></table></figure>
+
+<p>配置wsgi.py</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">from django.core.wsgi import get_wsgi_application</span><br><span class="line">os.environ[&apos;PYTHON_EGG_CACHE&apos;] = &apos;/tmp/.python-eggs&apos;</span><br><span class="line">os.environ.setdefault(&quot;DJANGO_SETTINGS_MODULE&quot;, &quot;website.settings&quot;)</span><br><span class="line">application = get_wsgi_application()</span><br></pre></td></tr></table></figure>
+
+<p>同时在settings.py中修改这一部分，如果不修改，django会拒绝外部的访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALLOWED_HOSTS = [&quot;your server ip&quot;]</span><br></pre></td></tr></table></figure>
+
+<p>WSGIPythonPath 取上面mod_wsgi输出的路径的site-packages部分，/home/website是我django网站存放的路径<br>WSGIPythonHome 与上面mod_wsgi输出的相同<br>DocumentRoot 就是django主要文件存放的地方<br>WSGIScriptAlias 将wsgi.py的地址映射为/<br>Alias 将存放静态文件的文件姐映射到/static/<br>Directory是为了提升所需要目录的权限  </p>
+<p>一切就绪之后,重新启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httpd -k restart</span><br></pre></td></tr></table></figure>
+
+<p>访问域名，发现没成功<br>查看error_log，默认位置在logs内</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /usr/local/httpd/logs/error_log</span><br></pre></td></tr></table></figure>
+
+<p>可以看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Permission denied: mod_wsgi (pid=6696): Unable to stat Python home /root/anaconda3/envs/django. Python interpreter may not be able to be initialized correctly. Verify the supplied path and access permissions for whole of the path.</span><br><span class="line">Fatal Python error: Py_Initialize: Unable to get the locale encoding</span><br><span class="line">ModuleNotFoundError: No module named &apos;encodings&apos;</span><br></pre></td></tr></table></figure>
+
+<p>表示权限不够。因此提升权限，亲测仅提升anaconda文件夹权限不能解决，因此</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 755 /root</span><br><span class="line">httpd -k start</span><br></pre></td></tr></table></figure>
+
+<p>访问成功<br>error_log在网站内部代码运行错误时还会存放错误信息,用于查到代码运行中可能出现的bug<br>（注意配置中的所有路径信息，如果其中包含括号，则需要在两侧加上引号）</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2018/04/26/2018/overview/" rel="next" title="2018不能忘记">
+                  <i class="fa fa-chevron-left"></i> 2018不能忘记
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2018/04/27/2018/urls/" rel="prev" title="有用的网站">
+                  有用的网站 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc">
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Apache"><span class="nav-number">1.</span> <span class="nav-text">Apache</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python-Django"><span class="nav-number">2.</span> <span class="nav-text">Python Django</span></a></li></ol></div>
+          </div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/muse.js?v=7.3.0"></script>
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/post-details.js?v=7.3.0"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="这是送给想学编程的同学的一篇推文    说起来学习Python也算有三年了，从高中二年级的一本《Python基础教程》开始，我就踏上了Python学习(掉发)的道路。（竟然过了这么久了）Python目前也算是最火的语言（之一）了吧！这是TIOBE 2018年11月的排行榜TIOBE排名衡量编程语言的流行程度可以说只要你能想象的到需要编程的地方都可以用Python，Python也因为太火走进了培训">
+<meta property="og:type" content="article">
+<meta property="og:title" content="how to learn pyhon">
+<meta property="og:url" content="http://yoursite.com/2018/10/15/2018/learn-pyhon/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="这是送给想学编程的同学的一篇推文    说起来学习Python也算有三年了，从高中二年级的一本《Python基础教程》开始，我就踏上了Python学习(掉发)的道路。（竟然过了这么久了）Python目前也算是最火的语言（之一）了吧！这是TIOBE 2018年11月的排行榜TIOBE排名衡量编程语言的流行程度可以说只要你能想象的到需要编程的地方都可以用Python，Python也因为太火走进了培训">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://cdn.simonyang.club/2018119-mmexport1529730405773.jpg">
+<meta property="og:image" content="http://cdn.simonyang.club/2018119-QQ%E6%88%AA%E5%9B%BE20181109193717.jpg">
+<meta property="og:image" content="http://cdn.simonyang.club/20181030-QQ%E6%88%AA%E5%9B%BE20181030164425.jpg">
+<meta property="og:image" content="http://cdn.simonyang.club/20181030-QQ%E6%88%AA%E5%9B%BE20181030164446.jpg">
+<meta property="og:updated_time" content="2018-11-09T13:20:58.417Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="how to learn pyhon">
+<meta name="twitter:description" content="这是送给想学编程的同学的一篇推文    说起来学习Python也算有三年了，从高中二年级的一本《Python基础教程》开始，我就踏上了Python学习(掉发)的道路。（竟然过了这么久了）Python目前也算是最火的语言（之一）了吧！这是TIOBE 2018年11月的排行榜TIOBE排名衡量编程语言的流行程度可以说只要你能想象的到需要编程的地方都可以用Python，Python也因为太火走进了培训">
+<meta name="twitter:image" content="http://cdn.simonyang.club/2018119-mmexport1529730405773.jpg">
+  <link rel="canonical" href="http://yoursite.com/2018/10/15/2018/learn-pyhon/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>how to learn pyhon | Hexo</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/2018/learn-pyhon/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">how to learn pyhon
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-10-15 17:33:46" itemprop="dateCreated datePublished" datetime="2018-10-15T17:33:46+08:00">2018-10-15</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-11-09 21:20:58" itemprop="dateModified" datetime="2018-11-09T21:20:58+08:00">2018-11-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>这是送给想学编程的同学的一篇推文  </p>
+</blockquote>
+<p>说起来学习Python也算有三年了，从高中二年级的一本《Python基础教程》开始，我就踏上了Python学习(掉发)的道路。<br>（竟然过了这么久了）<br><img src="http://cdn.simonyang.club/2018119-mmexport1529730405773.jpg" alt="2018119-mmexport1529730405773"><br>Python目前也算是最火的语言（之一）了吧！<br>这是TIOBE 2018年11月的排行榜<br><img src="http://cdn.simonyang.club/2018119-QQ%E6%88%AA%E5%9B%BE20181109193717.jpg" alt="2018119-QQ截图20181109193717"><br>TIOBE排名衡量编程语言的流行程度<br>可以说只要你能想象的到需要编程的地方都可以用Python，Python也因为太火走进了培训班emm</p>
+<blockquote>
+<p><strong>小嘀咕</strong><br>要是我早出生几年还是一样走现在的道路学习python说不定就年薪多少多少了。<br>唉，说多了都是泪啊，所以说人赶不上时代。</p>
+</blockquote>
+<p><strong>继续正经脸</strong>：<br>我当初选择python入门也是因为刷了刷知乎，大家说他简单、容易入门。<br>但是其实几年学习下来，python入门简单，但是学好写好还是挺难的。</p>
+<blockquote>
+<p><strong>小建议</strong>：<br>学习编程语言千万不要在入门用什么语言上纠结太久，如果你觉得python适合，那么买一本书开始看，如果你觉得java适合，也买一本书开始看。<br>开始看书写代码是第一步，纠结学什么语言是纯粹浪费时间。<br>当然，根据我的经验来看，学习好python，深刻理解面向对象的内涵还是很容易转到java、c#上的。<br>通过python的深入学习也可以了解很多计算机领域的概念，这个时候转到其他语言就轻而易举了。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>注意</strong></p>
+<ul>
+<li>看一本书写了一点代码并不能保证你入门</li>
+<li>两三本书+各种教程博客+学会百度是必须的</li>
+<li>多写代码会调bug才是王道</li>
+</ul>
+</blockquote>
+<h1 id="下面开始学习"><a href="#下面开始学习" class="headerlink" title="下面开始学习"></a>下面开始学习</h1><h2 id="下载-amp-安装："><a href="#下载-amp-安装：" class="headerlink" title="下载&amp;安装："></a>下载&amp;安装：</h2><p>进入Python3.7.1下载界面<br><a href="https://www.python.org/downloads/release/python-371/" target="_blank" rel="noopener"><strong>Python 3.7.1 releases</strong></a><br>操作系统是32位的选择x86, 64位的选择x86-64<br>windows选择executable installer<br>其他平台按需选择<br>点击下载、双击安装</p>
+<blockquote>
+<p>安装的时候需要勾选add to path，这样可以省去配置环境变量的苦恼<br>注意装好之后去开始菜单找Python，桌面上没有</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>当你开始厌烦pip安装包出现的各种问题时，考虑使用Anaconda吧，各种依赖一次性安装免去各种配置烦恼<br><a href="https://www.anaconda.com/download/" target="_blank" rel="noopener">Anaconda</a><br>但是官网有些慢，建议选择<br><a href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/" target="_blank" rel="noopener">Anaconda清华镜像</a><br>Anaconda内置Spyder和jupyter notebook, 真的推荐。 </p>
+</blockquote>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="书籍："><a href="#书籍：" class="headerlink" title="书籍："></a>书籍：</h3><p>如果你想买一本实体书看<br>(碰巧后天双十一大促) </p>
+<ul>
+<li><p>目前最火的是这一本<br><a href="http://www.ituring.com.cn/book/1861" target="_blank" rel="noopener">《Python编程：从入门到实践》</a><br><img src="http://cdn.simonyang.club/20181030-QQ%E6%88%AA%E5%9B%BE20181030164425.jpg" alt="20181030-QQ截图20181030164425"></p>
+</li>
+<li><p>我看的是这一本<br><a href="http://www.ituring.com.cn/book/2118" target="_blank" rel="noopener">《Python基础教程（第3版）》</a><br><img src="http://cdn.simonyang.club/20181030-QQ%E6%88%AA%E5%9B%BE20181030164446.jpg" alt="20181030-QQ截图20181030164446"><br>个人感觉后一本比前一本难一些</p>
+</li>
+<li><p>如果你想看pdf或者网页版<br><a href="https://www.gitbook.com/book/lenkimo/byte-of-python-chinese-edition/details" target="_blank" rel="noopener">简明python教程</a></p>
+</li>
+</ul>
+<h3 id="网络教程"><a href="#网络教程" class="headerlink" title="网络教程"></a>网络教程</h3><ul>
+<li><p><a href="http://www.runoob.com/python3/python3-tutorial.html" target="_blank" rel="noopener">Runoob Python3 教程</a>  </p>
+</li>
+<li><p><a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" target="_blank" rel="noopener">廖雪峰Python新手教程</a><br>说实话，廖雪峰教程对新手来说有点难。  </p>
+</li>
+<li><p>如果你英文足够好，那就直接刚官方教程<br><a href="https://docs.python.org/3/tutorial/index.html" target="_blank" rel="noopener">Python官方tutorial</a></p>
+</li>
+</ul>
+<h3 id="互动学习"><a href="#互动学习" class="headerlink" title="互动学习"></a>互动学习</h3><p>想边学习边写代码<br>这有个好网站, 但是需要你英语不错<br><a href="https://www.codecademy.com/catalog/language/python" target="_blank" rel="noopener">Codecademy</a></p>
+<h3 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h3><p>我很少看视频，我觉得看视频不如看书效率高。<br>想要像上课那样的学习环境的话可以去<a href="https://www.coursera.org/" target="_blank" rel="noopener">coursera</a>或者<a href="https://cn.udacity.com" target="_blank" rel="noopener">udacity</a>找一找。</p>
+<h3 id="社区"><a href="#社区" class="headerlink" title="社区"></a>社区</h3><ul>
+<li>多刷刷知乎还是不错的<br><a href="https://www.zhihu.com/topic/19552832/top-answers" target="_blank" rel="noopener">知乎python话题</a></li>
+</ul>
+<h3 id="帮助"><a href="#帮助" class="headerlink" title="帮助"></a>帮助</h3><p>学习的很迷，不知道内部操作到底是什么样的<br>试一下这个代码逻辑可视化网站<br><a href="http://www.pythontutor.com/" target="_blank" rel="noopener">Python tutor</a>  </p>
+<blockquote>
+<p>最推荐的路径是上面两本书都看完然后去学习爬虫写一些项目；<br>根据经验来看花钱买课程的话更容易好好学习，因为谁都不想自己花的钱被浪费。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2018/09/09/2018/Matlab/" rel="next" title="Matlab">
+                  <i class="fa fa-chevron-left"></i> Matlab
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2018/11/05/2018/huoyingjiang/" rel="prev" title="火萤酱介绍">
+                  火萤酱介绍 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc">
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#下面开始学习"><span class="nav-number">1.</span> <span class="nav-text">下面开始学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载-amp-安装："><span class="nav-number">1.1.</span> <span class="nav-text">下载&amp;安装：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#入门"><span class="nav-number">1.2.</span> <span class="nav-text">入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#书籍："><span class="nav-number">1.2.1.</span> <span class="nav-text">书籍：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络教程"><span class="nav-number">1.2.2.</span> <span class="nav-text">网络教程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#互动学习"><span class="nav-number">1.2.3.</span> <span class="nav-text">互动学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视频"><span class="nav-number">1.2.4.</span> <span class="nav-text">视频</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#社区"><span class="nav-number">1.2.5.</span> <span class="nav-text">社区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#帮助"><span class="nav-number">1.2.6.</span> <span class="nav-text">帮助</span></a></li></ol></li></ol></li></ol></div>
+          </div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/muse.js?v=7.3.0"></script>
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/post-details.js?v=7.3.0"></script>
+
+
+</body>
+</html>

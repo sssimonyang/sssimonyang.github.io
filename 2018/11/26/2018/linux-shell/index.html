@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="因为linux和shell的学习对于生物信息来说很重要，而且平常使用机会较少所以还是决定重读一遍《linux shell脚本攻略》并写下笔记笔记真实代码输入输出自行理解  无特殊说明均在linux centos环境下运行得出书是从交大图书馆借的，第二版，感觉不适合新手看  小试牛刀简介 shell中的注释开头为#~表示主目录每当一个新shell生成时，都会执行~/.bashrc    1234[r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux shell 脚本攻略">
+<meta property="og:url" content="http://yoursite.com/2018/11/26/2018/linux-shell/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="因为linux和shell的学习对于生物信息来说很重要，而且平常使用机会较少所以还是决定重读一遍《linux shell脚本攻略》并写下笔记笔记真实代码输入输出自行理解  无特殊说明均在linux centos环境下运行得出书是从交大图书馆借的，第二版，感觉不适合新手看  小试牛刀简介 shell中的注释开头为#~表示主目录每当一个新shell生成时，都会执行~/.bashrc    1234[r">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://cdn.simonyang.club/20181125-20150620201642326.jpg">
+<meta property="og:updated_time" content="2018-11-27T10:39:21.422Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux shell 脚本攻略">
+<meta name="twitter:description" content="因为linux和shell的学习对于生物信息来说很重要，而且平常使用机会较少所以还是决定重读一遍《linux shell脚本攻略》并写下笔记笔记真实代码输入输出自行理解  无特殊说明均在linux centos环境下运行得出书是从交大图书馆借的，第二版，感觉不适合新手看  小试牛刀简介 shell中的注释开头为#~表示主目录每当一个新shell生成时，都会执行~/.bashrc    1234[r">
+<meta name="twitter:image" content="http://cdn.simonyang.club/20181125-20150620201642326.jpg">
+  <link rel="canonical" href="http://yoursite.com/2018/11/26/2018/linux-shell/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>linux shell 脚本攻略 | Hexo</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/26/2018/linux-shell/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">linux shell 脚本攻略
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-11-26 18:56:09" itemprop="dateCreated datePublished" datetime="2018-11-26T18:56:09+08:00">2018-11-26</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-11-27 18:39:21" itemprop="dateModified" datetime="2018-11-27T18:39:21+08:00">2018-11-27</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>因为<code>linux</code>和<code>shell</code>的学习对于生物信息来说很重要，而且平常使用机会较少<br>所以还是决定重读一遍《linux shell脚本攻略》并写下笔记<br>笔记真实代码输入输出自行理解</p>
+<blockquote>
+<p>无特殊说明均在linux centos环境下运行得出<br>书是从交大图书馆借的，第二版，感觉不适合新手看</p>
+</blockquote>
+<h1 id="小试牛刀"><a href="#小试牛刀" class="headerlink" title="小试牛刀"></a>小试牛刀</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>shell中的注释开头为<code>#</code><br><code>~</code>表示主目录<br>每当一个新shell生成时，都会执行<code>~/.bashrc</code>  </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_14_centos ~]# pwd #linux centos root下</span><br><span class="line">/root</span><br><span class="line">vip7@VM-0-15-ubuntu:~$ pwd #linux ubuntu 非root下</span><br><span class="line">/home/vip7</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>root开头为<code>#</code> 非root开头为<code>$</code> <code>@</code>前为用户名后为主机名<br>非root用户使用<code>sudo &lt;command&gt; &lt;arguments&gt;</code>执行root命令<br>shell脚本通常起始为 <code>#!/bin/bash</code></p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> echo echo hello &gt; hello.sh</span><br><span class="line"><span class="meta">&gt;</span> cat hello.sh</span><br><span class="line">echo hello</span><br><span class="line"><span class="meta">&gt;</span> bash hello.sh</span><br><span class="line">hello</span><br><span class="line"><span class="meta">&gt;</span> ./hello.sh</span><br><span class="line">-bash: ./hello.sh: Permission denied</span><br><span class="line"><span class="meta">&gt;</span> ls -l</span><br><span class="line">total 12</span><br><span class="line">-rw-r--r--  1 root root   11 Jul 24 09:36 hello.sh</span><br><span class="line"><span class="meta">&gt;</span> chmod a+x hello.sh</span><br><span class="line"><span class="meta">&gt;</span> ./hello.sh</span><br><span class="line">hello</span><br><span class="line"><span class="meta">&gt;</span> /root/hello.sh</span><br><span class="line">hello</span><br><span class="line"><span class="meta">&gt;</span> ls -l</span><br><span class="line">total 12</span><br><span class="line">-rwxr-xr-x  1 root root   11 Jul 24 09:36 hello.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="打印"><a href="#打印" class="headerlink" title="打印"></a>打印</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> echo hello</span><br><span class="line">hello</span><br><span class="line"><span class="meta">&gt;</span> echo hello world</span><br><span class="line">hello world</span><br><span class="line"><span class="meta">&gt;</span> echo 'hello world'</span><br><span class="line">hello world</span><br><span class="line"><span class="meta">&gt;</span> echo "hello world"</span><br><span class="line">hello world</span><br><span class="line"><span class="meta">&gt;</span> echo "hello world !"</span><br><span class="line">-bash: !": event not found</span><br><span class="line"><span class="meta">&gt;</span> echo 'hello world !'</span><br><span class="line">hello world !</span><br><span class="line"><span class="meta">&gt;</span> echo "hello world \!"</span><br><span class="line">hello world \!</span><br><span class="line"><span class="meta">&gt;</span> echo "hello world\$"</span><br><span class="line">hello world$</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>ubuntu稍有区别</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vip7@VM-0-15-ubuntu:~$ echo &quot;hello world !&quot;</span><br><span class="line">hello world !</span><br><span class="line">vip7@VM-0-15-ubuntu:~$ echo &apos;hello world !&apos;</span><br><span class="line">hello world !</span><br><span class="line">vip7@VM-0-15-ubuntu:~$ echo &quot;hello world\$&quot;</span><br><span class="line">hello world$</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> printf "%-5s %-10s %-4.2f\n" 1 simon 40.3524 </span><br><span class="line">1     simon      40.35</span><br><span class="line"><span class="meta">&gt;</span> echo -n hello;echo hello </span><br><span class="line">hellohello</span><br><span class="line"><span class="meta">&gt;</span> echo -e "1\t2\t3" </span><br><span class="line">1	2	3</span><br></pre></td></tr></table></figure>
+
+<h2 id="环境变量和变量"><a href="#环境变量和变量" class="headerlink" title="环境变量和变量"></a>环境变量和变量</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> pgrep ls #获取程序的PID</span><br><span class="line">464</span><br><span class="line"><span class="meta">&gt;</span> cat /proc/464/environ</span><br><span class="line">LANG=en_USUTF-8PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/binHOME=/rootLOGNAME=rootUSER=rootSHELL=/bin/sh   #中间用</span><br><span class="line"><span class="meta">&gt;</span> cat /proc/464/environ | tr '\0' '\n'</span><br><span class="line">LANG=en_US.UTF-8</span><br><span class="line">PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin</span><br><span class="line">HOME=/root</span><br><span class="line">LOGNAME=root</span><br><span class="line">USER=root</span><br><span class="line">SHELL=/bin/sh</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>书中还讲到了环境变量LD_LIBRARY_PATH，该环境变量主要用于指定查找共享库（动态链接库）时除了默认路径之外的其他路径。但是两个服务器这个值都还不存在。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> var=value</span><br><span class="line"><span class="meta">&gt;</span> var = value</span><br><span class="line">-bash: var: command not found</span><br><span class="line"><span class="meta">&gt;</span> var="hello world"</span><br><span class="line"><span class="meta">&gt;</span> echo var</span><br><span class="line">var</span><br><span class="line"><span class="meta">&gt;</span> echo $var</span><br><span class="line">hello world</span><br><span class="line"><span class="meta">&gt;</span> echo $&#123;var&#125;</span><br><span class="line">hello world</span><br><span class="line"><span class="meta">&gt;</span> echo $vars</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span> echo $&#123;var&#125;s</span><br><span class="line">hello worlds</span><br><span class="line"><span class="meta">&gt;</span> echo '$var'</span><br><span class="line"><span class="meta">$</span>var</span><br><span class="line"><span class="meta">&gt;</span> echo "$var"</span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> var=value</span><br><span class="line"><span class="meta">&gt;</span> length=$&#123;#var&#125;</span><br><span class="line"><span class="meta">&gt;</span> echo $length</span><br><span class="line">5</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>一些内置值</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> echo $SHELL</span><br><span class="line">/bin/bash</span><br><span class="line"><span class="meta">&gt;</span> echo $0</span><br><span class="line">-bash</span><br><span class="line"><span class="meta">&gt;</span> echo $PATH</span><br><span class="line">/root/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin</span><br><span class="line"><span class="meta">&gt;</span> echo $HOME</span><br><span class="line">/root</span><br><span class="line"><span class="meta">&gt;</span> echo $PWD</span><br><span class="line">/root</span><br><span class="line"><span class="meta">&gt;</span> echo $USER</span><br><span class="line">root</span><br><span class="line"><span class="meta">&gt;</span> echo $UID</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vip7@VM-0-15-ubuntu:~$ echo $USER</span><br><span class="line">vip7</span><br><span class="line">vip7@VM-0-15-ubuntu:~$ echo $UID</span><br><span class="line">1011</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">export PATH="/root/anaconda3/bin:$PATH" #只在本次shell对话中有效</span><br><span class="line"><span class="meta">&gt;</span> echo $PATH</span><br><span class="line">/root/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin</span><br><span class="line">``` </span><br><span class="line"><span class="meta">#</span># 数学运算</span><br><span class="line">```shell</span><br><span class="line"><span class="meta">&gt;</span> a=1</span><br><span class="line"><span class="meta">&gt;</span> b=2</span><br><span class="line"><span class="meta">&gt;</span> let c=a+b</span><br><span class="line"><span class="meta">&gt;</span> echo $c</span><br><span class="line">3</span><br><span class="line"><span class="meta">&gt;</span> let a++</span><br><span class="line"><span class="meta">&gt;</span> echo $a</span><br><span class="line">2</span><br><span class="line"><span class="meta">&gt;</span> c=$[a+b]</span><br><span class="line"><span class="meta">&gt;</span> echo $c</span><br><span class="line">4</span><br><span class="line"><span class="meta">&gt;</span> let b+=4</span><br><span class="line"><span class="meta">&gt;</span> echo $b</span><br><span class="line">6</span><br><span class="line"><span class="meta">&gt;</span> c=$((a+b))</span><br><span class="line"><span class="meta">&gt;</span> echo $c</span><br><span class="line">8</span><br><span class="line"><span class="meta">&gt;</span> d=`expr a+b`</span><br><span class="line"><span class="meta">&gt;</span> echo $d</span><br><span class="line">a+b</span><br><span class="line"><span class="meta">&gt;</span> d=`expr $a+$b`</span><br><span class="line"><span class="meta">&gt;</span> echo $d</span><br><span class="line">2+6</span><br><span class="line"><span class="meta">&gt;</span> d=`expr $a + $b`</span><br><span class="line"><span class="meta">&gt;</span> echo $d</span><br><span class="line">8</span><br><span class="line"><span class="meta">&gt;</span> d=`expr $a \* $b` #只有这里的*需要转义</span><br><span class="line"><span class="meta">&gt;</span> echo $d</span><br><span class="line">12</span><br><span class="line"><span class="meta">&gt;</span> echo "4*0.35" | bc</span><br><span class="line">1.40</span><br><span class="line"><span class="meta">&gt;</span> result=`echo "$a*1.24" | bc`</span><br><span class="line"><span class="meta">&gt;</span> echo $result</span><br><span class="line">2.48</span><br><span class="line"><span class="meta">&gt;</span> number=100</span><br><span class="line"><span class="meta">&gt;</span> echo "obase=2;$number" | bc</span><br><span class="line">1100100</span><br><span class="line"><span class="meta">&gt;</span> number=1100100</span><br><span class="line"><span class="meta">&gt;</span> echo "obase=10;ibase=2;$number" | bc</span><br><span class="line">100</span><br><span class="line"><span class="meta">&gt;</span> echo "sqrt(100);10^10" | bc</span><br><span class="line">10</span><br><span class="line">10000000000</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a>文件描述符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">重定向</span><br><span class="line">0 --- stdin</span><br><span class="line">1 --- stdout</span><br><span class="line">2 --- stderr</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> echo "some" &gt; some.txt</span><br><span class="line"><span class="meta">&gt;</span> cat some.txt</span><br><span class="line">some</span><br><span class="line"><span class="meta">&gt;</span> echo "word" &gt;&gt; some.txt</span><br><span class="line"><span class="meta">&gt;</span> cat some.txt</span><br><span class="line">some</span><br><span class="line">word</span><br><span class="line"><span class="meta">&gt;</span> ls +</span><br><span class="line">ls: cannot access +: No such file or directory</span><br><span class="line"><span class="meta">&gt;</span> echo $? #命令执行状态</span><br><span class="line">2  #非0代表失败</span><br><span class="line"><span class="meta">&gt;</span> ls</span><br><span class="line">anaconda3  hello.sh  some.txt</span><br><span class="line"><span class="meta">&gt;</span> echo $?</span><br><span class="line">0  #代表成功</span><br><span class="line"><span class="meta">&gt;</span> ls + 2&gt; err.txt  #错误重定向</span><br><span class="line"><span class="meta">&gt;</span> cat err.txt</span><br><span class="line">ls: cannot access +: No such file or directory </span><br><span class="line"><span class="meta">&gt;</span> cmd &gt; some.txt 2&gt;&amp;1 #标准错误重定向到标准输出</span><br><span class="line"><span class="meta">&gt;</span> cat some.txt</span><br><span class="line">-bash: cmd: command not found</span><br><span class="line"><span class="meta">&gt;</span> ls + &amp;&gt; out.txt #标准错误和标准输出均重定向</span><br><span class="line"><span class="meta">&gt;</span> ls + 2&gt; /dev/null #错误重定向到黑洞</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> ls | tee out.txt | cat -n # tee将stdin写入文件的同时提供一份副本到管道</span><br><span class="line">     1	anaconda3</span><br><span class="line">     2	err.txt</span><br><span class="line">     3	hello.sh</span><br><span class="line">     4	out.txt</span><br><span class="line">     5	some.txt</span><br><span class="line"><span class="meta">&gt;</span> cat out.txt</span><br><span class="line">anaconda3</span><br><span class="line">err.txt</span><br><span class="line">hello.sh</span><br><span class="line">out.txt</span><br><span class="line">some.txt</span><br><span class="line"><span class="meta">&gt;</span> echo hello | tee -a out.txt</span><br><span class="line">hello</span><br><span class="line"><span class="meta">&gt;</span> cat out.txt</span><br><span class="line">anaconda3</span><br><span class="line">err.txt</span><br><span class="line">hello.sh</span><br><span class="line">out.txt</span><br><span class="line">some.txt</span><br><span class="line">hello</span><br><span class="line"><span class="meta">&gt;</span> echo who | tee - # -代表stdin 提供一份副本到标准输出</span><br><span class="line">who</span><br><span class="line">who</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> echo some &gt; out.txt </span><br><span class="line"><span class="meta">&gt;</span> cat &lt; out.txt #文件内容重定向到命令</span><br><span class="line">some</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span> cat&lt;&lt;EOF&gt;out.txt #EOF之间的内容重定向cat 然后重定向到out.txt EOF是一个tag可以替换成其他词</span><br><span class="line"><span class="meta">&gt;</span> hello</span><br><span class="line"><span class="meta">&gt;</span> boy</span><br><span class="line"><span class="meta">&gt;</span> EOF</span><br><span class="line"><span class="meta">&gt;</span> cat out.txt</span><br><span class="line">hello</span><br><span class="line">boy</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt; --- 从文件读取到stdin</span><br><span class="line">&gt; --- 截断模式写入文件</span><br><span class="line">&gt;&gt;--- 追加模式写入文件</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> echo this is a line &gt; input.txt</span><br><span class="line"><span class="meta">&gt;</span> exec 3&lt; input.txt #不能使用0,1,2 创建自己的文件描述符</span><br><span class="line"><span class="meta">&gt;</span> cat &lt;&amp;3 </span><br><span class="line">this is a line #再次读取需要重新分配文件描述符</span><br></pre></td></tr></table></figure>
+
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> array=(1 2 3 4 5) #普通数组</span><br><span class="line"><span class="meta">&gt;</span> array[5]=6</span><br><span class="line"><span class="meta">&gt;</span> echo $&#123;array[5]&#125;</span><br><span class="line">6</span><br><span class="line"><span class="meta">&gt;</span> index=2</span><br><span class="line"><span class="meta">&gt;</span> echo $&#123;array[$index]&#125;</span><br><span class="line">3</span><br><span class="line"><span class="meta">&gt;</span> echo $&#123;array[*]&#125;</span><br><span class="line">1 2 3 4 5 6</span><br><span class="line"><span class="meta">&gt;</span> array[10]=1</span><br><span class="line"><span class="meta">&gt;</span> echo $&#123;#array[*]&#125;</span><br><span class="line">7</span><br><span class="line"><span class="meta">&gt;</span> echo $&#123;array[*]&#125;</span><br><span class="line">1 2 3 4 5 6 1</span><br><span class="line"><span class="meta">&gt;</span> echo $&#123;array[10]&#125;</span><br><span class="line">1</span><br><span class="line"><span class="meta">&gt;</span> echo $&#123;array[9]&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> declare -A ass_array #定义关联数组</span><br><span class="line"><span class="meta">&gt;</span> ass_array=([index1]=val1 [index2]=val2&#125;)</span><br><span class="line"><span class="meta">&gt;</span> ass_array[index3]=val3</span><br><span class="line"><span class="meta">&gt;</span> echo $&#123;ass_array[index3]&#125;</span><br><span class="line">val3</span><br><span class="line"><span class="meta">&gt;</span> echo $&#123;ass_array[*]&#125;</span><br><span class="line">val1 val2&#125; val3</span><br><span class="line"><span class="meta">&gt;</span> echo $&#123;!ass_array[*]&#125;</span><br><span class="line">index1 index2 index3</span><br></pre></td></tr></table></figure>
+
+<h2 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> alias ls='ls -ll'</span><br><span class="line"><span class="meta">&gt;</span> ls</span><br><span class="line">total 4</span><br><span class="line">drwxr-xr-x 22 root root 4096 Oct  5  2018 anaconda3</span><br><span class="line"><span class="meta">&gt;</span> \ls</span><br><span class="line">anaconda3</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取终端信息"><a href="#获取终端信息" class="headerlink" title="获取终端信息"></a>获取终端信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">stty -echo #禁止将输出发送到终端</span><br><span class="line">stty echo #允许将输出发送到终端</span><br><span class="line">tput sc #存储光标位置</span><br><span class="line">tput rc #恢复光标位置</span><br><span class="line">tput ed #清除从当前光标到行末尾的所有内容</span><br></pre></td></tr></table></figure>
+
+<h2 id="时间和日期"><a href="#时间和日期" class="headerlink" title="时间和日期"></a>时间和日期</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> date</span><br><span class="line">Sun Nov 18 18:22:25 CST 2018</span><br><span class="line"><span class="meta">&gt;</span> date +%s</span><br><span class="line">1542536551</span><br><span class="line"><span class="meta">&gt;</span> date --date "Nov 18 2018" +%A</span><br><span class="line">Sunday</span><br><span class="line"><span class="meta">&gt;</span> date "+%d %B %Y"</span><br><span class="line">18 November 2018</span><br><span class="line"><span class="meta">&gt;</span> date -s "2018 11 18 18:23:22"</span><br><span class="line">date: invalid date ‘2018 11 18 18:23:22’</span><br><span class="line"><span class="meta">&gt;</span> date -s "2018 Nov 18 18:23:22"</span><br><span class="line">date: invalid date ‘2018 Nov 18 18:23:22’</span><br><span class="line"><span class="meta">&gt;</span> date -s "18 Nov 2018 18:23:22"</span><br><span class="line">Sun Nov 18 18:23:22 CST 2018</span><br><span class="line"><span class="meta">&gt;</span> sleep 10</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">星期          %a %A</span><br><span class="line">月            %b %B</span><br><span class="line">日            %d</span><br><span class="line">固定格式日期   %D</span><br><span class="line">年            %y %Y</span><br><span class="line">小时          %I %H</span><br><span class="line">分钟          %M</span><br><span class="line">秒            %S</span><br><span class="line">纳秒          %N</span><br><span class="line">Unix纪元时    %s</span><br></pre></td></tr></table></figure>
+
+<h2 id="调试脚本"><a href="#调试脚本" class="headerlink" title="调试脚本"></a>调试脚本</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> echo echo some &gt; out.sh</span><br><span class="line"><span class="meta">&gt;</span> bash -x out.sh</span><br><span class="line">+ echo some</span><br><span class="line">some</span><br><span class="line"><span class="meta">&gt;</span> for i in &#123;1..3&#125;; do set -x; echo $i; set +x; done</span><br><span class="line">+ echo 1</span><br><span class="line">1</span><br><span class="line">+ set +x</span><br><span class="line">+ echo 2</span><br><span class="line">2</span><br><span class="line">+ set +x</span><br><span class="line">+ echo 3</span><br><span class="line">3</span><br><span class="line">+ set +x</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set -x 在执行时显示参数和命令</span><br><span class="line">set +x 禁止调试</span><br><span class="line">set -v 当命令进行读取时显示输入</span><br><span class="line">set +v 禁止打印输入</span><br></pre></td></tr></table></figure>
+
+<p>调试便捷方法<br>将<code>#!/bin/bash</code>改为<code>#!/bin/bash -xv</code></p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fname()</span><br><span class="line">&#123;</span><br><span class="line">    statements;</span><br><span class="line">&#125;</span><br><span class="line">fname()</span><br><span class="line">&#123;</span><br><span class="line">    statements;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> fname()</span><br><span class="line"><span class="meta">&gt;</span> &#123;</span><br><span class="line"><span class="meta">&gt;</span> echo $1,$2;</span><br><span class="line"><span class="meta">&gt;</span> echo "$@"; </span><br><span class="line"><span class="meta">&gt;</span> echo "$*"; </span><br><span class="line"><span class="meta">&gt;</span> return 0;</span><br><span class="line"><span class="meta">&gt;</span> &#125;</span><br><span class="line"><span class="meta">&gt;</span> fname my world</span><br><span class="line">my,world</span><br><span class="line">my world</span><br><span class="line">my world</span><br></pre></td></tr></table></figure>
+
+<p><code>$*</code> 和 <code>$@</code> 都表示传递给函数或脚本的所有参数，不被双引号<code>&quot; &quot;</code>包含时，都以<code>&quot;$1&quot; &quot;$2&quot; … &quot;$n&quot;</code> 的形式输出所有参数。<br>但是当它们被双引号<code>&quot; &quot;</code>包含时，<code>&quot;$*&quot;</code> 会将所有的参数作为一个整体，以<code>&quot;$1 $2 … $n&quot;</code>的形式输出所有参数；<code>&quot;$@&quot;</code> 会将各个参数分开，以<code>&quot;$1&quot; &quot;$2&quot; … &quot;$n&quot;</code> 的形式输出所有参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$0		当前脚本的文件名</span><br><span class="line">$n		传递给脚本或函数的参数。n 是一个数字，表示第几个参数。例如，第一个参数是$1，第二个参数是$2。</span><br><span class="line">$#		传递给脚本或函数的参数个数。</span><br><span class="line">$*		传递给脚本或函数的所有参数。</span><br><span class="line">$@		传递给脚本或函数的所有参数。</span><br><span class="line">$?		上个命令的退出状态，或函数的返回值。一般情况下，大部分命令执行成功会返回 0，失败返回 非0。</span><br><span class="line">$$		当前Shell进程ID。对于 Shell 脚本，就是这些脚本所在的进程ID。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> cat parent.sh</span><br><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">plus1()&#123; echo $(($1+1));&#125;</span><br><span class="line">echo $(plus1 4)</span><br><span class="line">export -f plus1  #使函数子进程可用</span><br><span class="line">./child.sh 3 4</span><br><span class="line"><span class="meta">&gt;</span> vim child.sh</span><br><span class="line"><span class="meta">&gt;</span> cat child.sh</span><br><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">echo $(plus1 $(($1 * $2)))</span><br><span class="line"><span class="meta">&gt;</span> chmod a+x *.sh</span><br><span class="line"><span class="meta">&gt;</span> ./parent.sh</span><br><span class="line">5</span><br><span class="line">13</span><br><span class="line"><span class="meta">&gt;</span> cmd="echo some"</span><br><span class="line"><span class="meta">&gt;</span> $cmd #好神奇啊我也不知道为啥</span><br><span class="line">some</span><br></pre></td></tr></table></figure>
+
+<h2 id="将输出写入变量"><a href="#将输出写入变量" class="headerlink" title="将输出写入变量"></a>将输出写入变量</h2><blockquote>
+<p>管道操作符 <code>cmd1 | cmd2 | cmd3</code></p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> ls | cat -n &gt;out.txt</span><br><span class="line"><span class="meta">&gt;</span> cat out.txt</span><br><span class="line">     1	anaconda3</span><br><span class="line">     2	out.txt</span><br><span class="line"><span class="meta">&gt;</span> output=$(ls | cat -n)</span><br><span class="line"><span class="meta">&gt;</span> echo $output</span><br><span class="line">1 anaconda3 2 out.txt</span><br><span class="line"><span class="meta">&gt;</span> output=`ls | cat -n`</span><br><span class="line"><span class="meta">&gt;</span> echo $output</span><br><span class="line">1 anaconda3 2 out.txt</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>子shell</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> pwd</span><br><span class="line">/root</span><br><span class="line"><span class="meta">&gt;</span> (cd /data;ls)</span><br><span class="line">Anaconda3-5.1.0-Linux-x86_64.sh  index.txt</span><br><span class="line"><span class="meta">&gt;</span> pwd</span><br><span class="line">/root</span><br><span class="line"><span class="meta">&gt;</span> cat text.txt</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line"><span class="meta">&gt;</span> out=$(cat text.txt)</span><br><span class="line"><span class="meta">&gt;</span> echo $out</span><br><span class="line">1 2 3</span><br><span class="line"><span class="meta">&gt;</span> out="$(cat text.txt)"</span><br><span class="line"><span class="meta">&gt;</span> echo $out</span><br><span class="line">1 2 3</span><br></pre></td></tr></table></figure>
+
+<h2 id="read"><a href="#read" class="headerlink" title="read"></a>read</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> read -n 2 var</span><br><span class="line"><span class="meta">12&gt;</span> echo $var</span><br><span class="line">12</span><br><span class="line"><span class="meta">&gt;</span> read -s password #输入时无回显</span><br><span class="line"><span class="meta">&gt;</span> echo $password</span><br><span class="line">simonyang</span><br><span class="line"><span class="meta">&gt;</span> read -p "Please enter your Name:" var</span><br><span class="line">Please enter your Name:simonyang</span><br><span class="line"><span class="meta">&gt;</span> echo $var</span><br><span class="line">simonyang</span><br><span class="line"><span class="meta">&gt;</span> read -d . var</span><br><span class="line">simon.&gt; echo $var</span><br><span class="line">simon</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>read -t 2 var</code>要求两秒内输入</p>
+</blockquote>
+<h2 id="运行命令直至成功"><a href="#运行命令直至成功" class="headerlink" title="运行命令直至成功"></a>运行命令直至成功</h2><blockquote>
+<p><code>true</code>作为<code>/bin</code>中的一个二进制文件实现<br>shell内建的<code>:</code>总是返回0的退出码</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> repeat() &#123;while :; do $@ &amp;&amp; return ; done&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="字段分隔符-IFS"><a href="#字段分隔符-IFS" class="headerlink" title="字段分隔符 IFS"></a>字段分隔符 IFS</h2><blockquote>
+<p>IFS的默认值为空白字符（换行符、制表符或者空格）</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> for item in "1 2 3";do echo $item;done</span><br><span class="line">1 2 3</span><br><span class="line"><span class="meta">&gt;</span> oldifs=$IFS</span><br><span class="line"><span class="meta">&gt;</span> IFS=,</span><br><span class="line"><span class="meta">&gt;</span> for item in "1,2,3";do echo $item;done</span><br><span class="line">1 2 3</span><br><span class="line"><span class="meta">&gt;</span> IFS=$oldifs</span><br><span class="line"><span class="meta">&gt;</span> for item in "1,2,3";do echo $item;done</span><br><span class="line">1,2,3</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">for var in list;</span><br><span class="line">do </span><br><span class="line">    commands;</span><br><span class="line">done</span><br><span class="line">for((i=0;i&lt;10;i++))</span><br><span class="line">&#123;</span><br><span class="line">    commands;</span><br><span class="line">&#125;</span><br><span class="line">while condition;</span><br><span class="line">do </span><br><span class="line">    commands;</span><br><span class="line">done</span><br><span class="line">until condition;  #直到条件为真</span><br><span class="line">do</span><br><span class="line">    commands;</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> for i in &#123;a..g&#125;;do echo $i;done</span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br><span class="line">e</span><br><span class="line">f</span><br><span class="line">g</span><br></pre></td></tr></table></figure>
+
+<h2 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">if condition;</span><br><span class="line">then</span><br><span class="line">    commands;</span><br><span class="line">fi</span><br><span class="line">if condition;</span><br><span class="line">then</span><br><span class="line">    commands;</span><br><span class="line">else if condition;</span><br><span class="line">then</span><br><span class="line">    commands;</span><br><span class="line">else</span><br><span class="line">    commands;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>[ condition ] &amp;&amp; action</code> #如果真，则action运行<br><code>[ condition ] || action</code> #如果假，则action运行</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">算术比较</span><br><span class="line">-eq   equal返回真     </span><br><span class="line">-ne   not equal返回真</span><br><span class="line">-gt   greater than返回真</span><br><span class="line">-lt   less than返回真</span><br><span class="line">-ge   greater or equal返回真</span><br><span class="line">-le   less or equal返回真</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> if [ 5 -eq 5 -a 4 -gt 3]; then echo true;fi</span><br><span class="line">-bash: [: missing `]' #3与]应有空格，5与[也是</span><br><span class="line"><span class="meta">&gt;</span> if [ 5 -eq 5 -a 4 -gt 3 ]; then echo true;fi</span><br><span class="line">true</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">文件系统测试，是为真</span><br><span class="line">[ -f $var ] 是否包含文件路径和文件名 </span><br><span class="line">[ -x $var ] 是否可执行</span><br><span class="line">[ -d $var ] 是否是目录</span><br><span class="line">[ -e $var ] 是否存在</span><br><span class="line">[ -c $var ] 是否是字符设备</span><br><span class="line">[ -b $var ] 是否是块设备</span><br><span class="line">[ -w $var ] 是否可写</span><br><span class="line">[ -r $var ] 是否可读</span><br><span class="line">[ -L $var ] 是否是符号链接</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> if [ -f out.txt ]; then echo true;fi</span><br><span class="line">true</span><br><span class="line"><span class="meta">&gt;</span> ls</span><br><span class="line">anaconda3  out.txt  text.txt</span><br><span class="line"><span class="meta">&gt;</span> if [ ! -L out.txt ]; then echo true;fi # !取反</span><br><span class="line">true</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">字符串比较，是为真</span><br><span class="line">最好使用双中括号，str1和str2前后都有空格</span><br><span class="line">[[ $str1 = $str2 ]] 是否相等</span><br><span class="line">[[ $str1 == $str2 ]] 是否相等</span><br><span class="line">[[ $str1 != $str2 ]] 是否不相等</span><br><span class="line">[[ $str1 &gt; $str2 ]] 按字母序，str1是否大于str2</span><br><span class="line">[[ $str1 &gt; $str2 ]] 按字母序，str1是否小于str1</span><br><span class="line">[[ -z $str2 ]] 是否是空字符串</span><br><span class="line">[[ -n $str2 ]] 是否是非空字符串</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> str1="hello"</span><br><span class="line"><span class="meta">&gt;</span> str2=''</span><br><span class="line"><span class="meta">&gt;</span> if [[ -n $str1 ]] &amp;&amp; [[ -z $str2 ]];then echo true;fi</span><br><span class="line">true</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用test</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> if test $var -eq 1;then echo true;fi</span><br><span class="line">true</span><br><span class="line"><span class="meta">&gt;</span> if ! test $var -eq 0;then echo true;fi</span><br><span class="line">true</span><br></pre></td></tr></table></figure>
+
+<h1 id="命令之乐"><a href="#命令之乐" class="headerlink" title="命令之乐"></a>命令之乐</h1><h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> echo this is a line &gt; out.txt </span><br><span class="line"><span class="meta">&gt;</span> cat out.txt</span><br><span class="line">this is a line</span><br><span class="line"><span class="meta">&gt;</span> echo this is a new line &gt;out2.txt</span><br><span class="line"><span class="meta">&gt;</span> cat out.txt out2.txt</span><br><span class="line">this is a line</span><br><span class="line">this is a new line</span><br><span class="line"><span class="meta">&gt;</span> echo some new | cat - out.txt</span><br><span class="line">some new</span><br><span class="line">this is a line</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> cat out.txt</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3</span><br><span class="line"><span class="meta">&gt;</span> cat -s out.txt</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line"></span><br><span class="line">3</span><br><span class="line"><span class="meta">&gt;</span> cat some.py</span><br><span class="line">def hello():</span><br><span class="line">	print("hello world")</span><br><span class="line"><span class="meta">&gt;</span> cat -T some.py</span><br><span class="line">def hello():</span><br><span class="line">^Iprint("hello world")</span><br><span class="line"><span class="meta">&gt;</span> cat -n some.py</span><br><span class="line">     1	def hello():</span><br><span class="line">     2		print("hello world")</span><br><span class="line"><span class="meta">&gt;</span> cat -n out.txt</span><br><span class="line">     1	1</span><br><span class="line">     2	2</span><br><span class="line">     3	</span><br><span class="line">     4	</span><br><span class="line">     5	</span><br><span class="line">     6	</span><br><span class="line">     7	3</span><br><span class="line"><span class="meta">&gt;</span> cat -nb out.txt</span><br><span class="line">     1	1</span><br><span class="line">     2	2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     3	3</span><br></pre></td></tr></table></figure>
+
+<h2 id="script"><a href="#script" class="headerlink" title="script"></a>script</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> script -t 2&gt; timelog.log -a output.session</span><br><span class="line">Script started, file is output.session</span><br><span class="line"><span class="meta">&gt;</span> echo hello &gt; new.txt</span><br><span class="line"><span class="meta">&gt;</span> cat new.txt</span><br><span class="line">hello</span><br><span class="line"><span class="meta">&gt;</span> exit</span><br><span class="line">exit</span><br><span class="line">Script done, file is output.session</span><br><span class="line"><span class="meta">&gt;</span> cat output.session</span><br><span class="line">Script started on Sat 24 Nov 2018 04:24:45 PM CST</span><br><span class="line"><span class="meta">&gt;</span> echo hello &gt; new.txt</span><br><span class="line"><span class="meta">&gt;</span> cat new.txt</span><br><span class="line">hello</span><br><span class="line"><span class="meta">&gt;</span> exit</span><br><span class="line">exit</span><br><span class="line"></span><br><span class="line">Script done on Sat 24 Nov 2018 04:25:07 PM CST</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span> scriptreplay timelog.log output.session #重放</span><br></pre></td></tr></table></figure>
+
+<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> cd /home</span><br><span class="line"><span class="meta">&gt;</span> touch some.py out1.txt out2.txt</span><br><span class="line"><span class="meta">&gt;</span> ls</span><br><span class="line">out1.txt  out2.txt  some.py</span><br><span class="line"><span class="meta">&gt;</span> find . </span><br><span class="line">.</span><br><span class="line">./out2.txt</span><br><span class="line">./out1.txt</span><br><span class="line">./some.py</span><br><span class="line"><span class="meta">&gt;</span> find . -print0</span><br><span class="line">../out2.txt./out1.txt./some.py&gt; find . -name "*.txt"</span><br><span class="line">./out2.txt</span><br><span class="line">./out1.txt</span><br><span class="line"><span class="meta">&gt;</span> find . -name *.txt</span><br><span class="line">find: paths must precede expression: out2.txt</span><br><span class="line">Usage: find [-H] [-L] [-P] [-Olevel] [-D help|tree|search|stat|rates|opt|exec] [path...] [expression]</span><br><span class="line"><span class="meta">&gt;</span> touch OUT.txt</span><br><span class="line"><span class="meta">&gt;</span> find . -iname "out*"</span><br><span class="line">./out2.txt</span><br><span class="line">./OUT.txt</span><br><span class="line">./out1.txt</span><br><span class="line"><span class="meta">&gt;</span> touch some.log</span><br><span class="line"><span class="meta">&gt;</span> ls</span><br><span class="line">out1.txt  out2.txt  OUT.txt  some.log  some.py</span><br><span class="line"><span class="meta">&gt;</span> find . \( -name "*.txt" -o -name "*.log" \) </span><br><span class="line">./out2.txt</span><br><span class="line">./OUT.txt</span><br><span class="line">./out1.txt</span><br><span class="line">./some.log</span><br><span class="line"><span class="meta">&gt;</span> find /root/ -path "*/.ssh/*"</span><br><span class="line">/root/.ssh/authorized_keys</span><br><span class="line"><span class="meta">&gt;</span> find . -regex  ".*\(\.py\|\.txt\)$"</span><br><span class="line">./out2.txt</span><br><span class="line">./OUT.txt</span><br><span class="line">./out1.txt</span><br><span class="line">./some.py</span><br><span class="line"><span class="meta">&gt;</span> touch some.PY</span><br><span class="line"><span class="meta">&gt;</span> find . -iregex  ".*\.py$"</span><br><span class="line">./some.PY</span><br><span class="line">./some.py</span><br><span class="line"><span class="meta">&gt;</span> find . ! -iregex  ".*\.py$"</span><br><span class="line">.</span><br><span class="line">./out2.txt</span><br><span class="line">./OUT.txt</span><br><span class="line">./out1.txt</span><br><span class="line">./some.log</span><br><span class="line"><span class="meta">&gt;</span> mkdir some</span><br><span class="line"><span class="meta">&gt;</span> mv out* some/</span><br><span class="line"><span class="meta">&gt;</span> find . -maxdepth 1 </span><br><span class="line">.</span><br><span class="line">./some.PY</span><br><span class="line">./OUT.txt</span><br><span class="line">./some</span><br><span class="line">./some.py</span><br><span class="line">./some.log</span><br><span class="line"><span class="meta">&gt;</span> find .</span><br><span class="line">.</span><br><span class="line">./some.PY</span><br><span class="line">./OUT.txt</span><br><span class="line">./some</span><br><span class="line">./some/out2.txt</span><br><span class="line">./some/out1.txt</span><br><span class="line">./some.py</span><br><span class="line">./some.log</span><br><span class="line"><span class="meta">&gt;</span> find . -mindepth 2</span><br><span class="line">./some/out2.txt</span><br><span class="line">./some/out1.txt</span><br><span class="line"><span class="meta">&gt;</span> find . -type d  # d指目录，同样的还有f l </span><br><span class="line">.</span><br><span class="line">./some</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>访问时间 -atime 用户最近一次访问文件的时间 access<br>修改时间 -mtime 文件内容最后一次被修改的时间 modify<br>变化时间 -ctime 文件元数据最后一次改变的时间 change<br>作为时间选项 单位是天 -表示小于 +表示大于<br>以分钟为计量单位 -amin -mmin -cmin</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> vim OUT.txt</span><br><span class="line"><span class="meta">&gt;</span> find . -cmin -1</span><br><span class="line">.</span><br><span class="line">./OUT.txt</span><br><span class="line"><span class="meta">&gt;</span> find . -newer some.PY</span><br><span class="line">.</span><br><span class="line">./OUT.txt</span><br><span class="line">./some</span><br><span class="line"><span class="meta">&gt;</span> find . -size -1  #</span><br><span class="line">./some.PY</span><br><span class="line">./some/out2.txt</span><br><span class="line">./some/out1.txt</span><br><span class="line">./some.py</span><br><span class="line">./some.log</span><br><span class="line"><span class="meta">&gt;</span> find . -size +1c #大于1字节 </span><br><span class="line">.</span><br><span class="line">./OUT.txt</span><br><span class="line">./some</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>b  块  512字节<br>  c    字节<br>  w    字  2字节<br>  k    1024字节<br>  M    1024K字节<br>  G    1024M字节</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> ls</span><br><span class="line">OUT.txt  some  some.log  some.py  some.PY</span><br><span class="line"><span class="meta">&gt;</span> find . -size +1c -delete</span><br><span class="line">find: cannot delete ‘./some’: Directory not empty</span><br><span class="line"><span class="meta">&gt;</span> ls -l</span><br><span class="line">total 4</span><br><span class="line">drwxr-xr-x 2 root root 4096 Nov 24 16:52 some</span><br><span class="line">-rw-r--r-- 1 root root    0 Nov 24 16:41 some.log</span><br><span class="line">-rw-r--r-- 1 root root    0 Nov 24 16:37 some.py</span><br><span class="line">-rw-r--r-- 1 root root    0 Nov 24 16:48 some.PY</span><br><span class="line"><span class="meta">&gt;</span> find . -maxdepth 1 -perm 755 </span><br><span class="line">.</span><br><span class="line">./some</span><br><span class="line"><span class="meta">&gt;</span> find . -maxdepth 1 -user root</span><br><span class="line">.</span><br><span class="line">./some.PY</span><br><span class="line">./some</span><br><span class="line">./some.py</span><br><span class="line">./some.log</span><br><span class="line"><span class="meta">&gt;</span> find . -maxdepth 1 -name "some.*" -exec chmod 755 &#123;&#125; \;  # &#123;&#125; 每次代入文件名然后每次运行</span><br><span class="line"><span class="meta">&gt;</span> ls -l</span><br><span class="line">total 4</span><br><span class="line">drwxr-xr-x 2 755 root 4096 Nov 24 16:52 some</span><br><span class="line">-rwxr-xr-x 1 755 root    0 Nov 24 16:41 some.log</span><br><span class="line">-rwxr-xr-x 1 755 root    0 Nov 24 16:37 some.py</span><br><span class="line">-rwxr-xr-x 1 755 root    0 Nov 24 16:48 some.PY</span><br><span class="line"><span class="meta">&gt;</span> find . -maxdepth 1 -name "some.*" -exec chmod 644 &#123;&#125; +;  # &#123;&#125; 传入所有文件名然后一次运行</span><br><span class="line"><span class="meta">&gt;</span> ls -l</span><br><span class="line">total 4</span><br><span class="line">drwxr-xr-x 2 755 root 4096 Nov 24 16:52 some</span><br><span class="line">-rw-r--r-- 1 755 root    0 Nov 24 16:41 some.log</span><br><span class="line">-rw-r--r-- 1 755 root    0 Nov 24 16:37 some.py</span><br><span class="line">-rw-r--r-- 1 755 root    0 Nov 24 16:48 some.PY</span><br><span class="line"><span class="meta">&gt;</span> cat some.py</span><br><span class="line">def hi():</span><br><span class="line">	pass</span><br><span class="line"><span class="meta">&gt;</span> cat some.PY</span><br><span class="line">def hello():</span><br><span class="line">	pass</span><br><span class="line"><span class="meta">&gt;</span> find . -iname "*.py" -exec cat &#123;&#125; \;&gt; final</span><br><span class="line"><span class="meta">&gt;</span> cat final</span><br><span class="line">def hello():</span><br><span class="line">	pass</span><br><span class="line">def hi():</span><br><span class="line">	pass</span><br><span class="line"><span class="meta">&gt;</span> find ~/ -name ".git" -prune  #跳过.git目录</span><br></pre></td></tr></table></figure>
+
+<h2 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a>xargs</h2><blockquote>
+<p>xargs 命令将标准输入数据转换成命令行参数</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> cat out.txt</span><br><span class="line">1 2 3 4 5</span><br><span class="line">6 7 8</span><br><span class="line">9</span><br><span class="line"><span class="meta">&gt;</span> cat out.txt | xargs</span><br><span class="line">1 2 3 4 5 6 7 8 9</span><br><span class="line"><span class="meta">&gt;</span> cat out.txt | xargs -n 3</span><br><span class="line">1 2 3</span><br><span class="line">4 5 6</span><br><span class="line">7 8 9</span><br><span class="line"><span class="meta">&gt;</span> echo "splitXsplitXsplit" | xargs -d X # d delimiter</span><br><span class="line">split split split</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> cat demo.sh</span><br><span class="line">echo $* #</span><br><span class="line"><span class="meta">&gt;</span> cat args.txt</span><br><span class="line">arg1</span><br><span class="line">arg2</span><br><span class="line">arg3</span><br><span class="line"><span class="meta">&gt;</span> cat args.txt | xargs -n 2 ./demo.sh</span><br><span class="line">arg1 arg2</span><br><span class="line">arg3</span><br><span class="line"><span class="meta">&gt;</span> cat args.txt | xargs -I &#123;&#125;  ./demo.sh -p &#123;&#125;  # -I指定替换名称 对于每个参数执行一次</span><br><span class="line">-p arg1</span><br><span class="line">-p arg2</span><br><span class="line">-p arg3</span><br><span class="line"><span class="meta">&gt;</span> cat args.txt | xargs -I p  ./demo.sh -p -l</span><br><span class="line">-arg1 -l</span><br><span class="line">-arg2 -l</span><br><span class="line">-arg3 -l</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>将find与xargs结合使用时定界符应该是<code>\0</code></p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> ls</span><br><span class="line">args.txt  demo.sh  out.txt</span><br><span class="line"><span class="meta">&gt;</span> find . -name "out.*" -print0 | xargs -0 rm -f  #-print0 将`\0`作为定界符输出文件名 xargs -0 将`\0`作为定界符分开</span><br><span class="line"><span class="meta">&gt;</span> ls</span><br><span class="line">demo.sh</span><br><span class="line"><span class="meta">&gt;</span> cat files.txt</span><br><span class="line">args1.txt</span><br><span class="line">args2.txt</span><br><span class="line"><span class="meta">&gt;</span> cat args1.txt</span><br><span class="line">hello</span><br><span class="line"><span class="meta">&gt;</span> cat args2.txt</span><br><span class="line">hi</span><br><span class="line"><span class="meta">&gt;</span> cat files.txt | xargs -I &#123;&#125; cat &#123;&#125;</span><br><span class="line">hello</span><br><span class="line">hi</span><br><span class="line"><span class="meta">&gt;</span> cat files.txt | (while read arg; do cat $arg; done )  #利用子shell实现相似功能</span><br><span class="line">hello</span><br><span class="line">hi</span><br></pre></td></tr></table></figure>
+
+<h2 id="tr"><a href="#tr" class="headerlink" title="tr"></a>tr</h2><blockquote>
+<p>tr只能通过stdin接受输入 </p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> echo "HELLO" | tr "A-Z" 'a-z' #'z-a'是行不通的</span><br><span class="line">hello</span><br><span class="line"><span class="meta">&gt;</span> echo "HELLO" | tr "A-Z" 'b'</span><br><span class="line">bbbbb</span><br><span class="line"><span class="meta">&gt;</span> echo "HELLO I AM" | tr -d 'A-H'</span><br><span class="line">LLO I M</span><br><span class="line"><span class="meta">&gt;</span> echo "HELLO I AM" | tr -d -c 'A-H\n' #-c选择补集</span><br><span class="line">HEA</span><br><span class="line"><span class="meta">&gt;</span> echo hello i am    your    friend  | tr -s ' ' # 压缩</span><br><span class="line">hello i am your friend</span><br><span class="line"><span class="meta">&gt;</span> echo hello i am your friend | tr [:lower:] [:upper:] </span><br><span class="line">HELLO I AM YOUR FRIEND</span><br></pre></td></tr></table></figure>
+
+<h2 id="md5sum-sha1sum"><a href="#md5sum-sha1sum" class="headerlink" title="md5sum sha1sum"></a>md5sum sha1sum</h2><blockquote>
+<p>计算校验和<br>md5sum 和 sha1sum 使用非常相似</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> md5sum demo.sh</span><br><span class="line">e88d83ea97b4461177c708b8760045a8  demo.sh</span><br><span class="line"><span class="meta">&gt;</span> md5sum demo.sh &gt; demo.md5</span><br><span class="line"><span class="meta">&gt;</span> md5sum -c demo.md5</span><br><span class="line">demo.sh: OK</span><br></pre></td></tr></table></figure>
+
+<h2 id="gpg-base64"><a href="#gpg-base64" class="headerlink" title="gpg base64"></a>gpg base64</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> cat demo.sh</span><br><span class="line">echo $* #</span><br><span class="line"><span class="meta">&gt;</span> gpg -c demo.sh</span><br><span class="line"><span class="meta">&gt;</span> gpg demo.sh.gpg</span><br><span class="line"><span class="meta">&gt;</span> base64 demo.sh &gt; out</span><br><span class="line"><span class="meta">&gt;</span> cat out</span><br><span class="line">ZWNobyAkKiAjCg==</span><br><span class="line"><span class="meta">&gt;</span> base64 -d out | cat -</span><br><span class="line">echo $* #</span><br></pre></td></tr></table></figure>
+
+<h2 id="sort-uniq"><a href="#sort-uniq" class="headerlink" title="sort uniq"></a>sort uniq</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> cat files.txt</span><br><span class="line">3</span><br><span class="line">3</span><br><span class="line">9</span><br><span class="line">3</span><br><span class="line">2</span><br><span class="line">8</span><br><span class="line"><span class="meta">&gt;</span> sort files.txt</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">3</span><br><span class="line">3</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line"><span class="meta">&gt;</span> sort -r files.txt</span><br><span class="line">9</span><br><span class="line">8</span><br><span class="line">3</span><br><span class="line">3</span><br><span class="line">3</span><br><span class="line">2</span><br><span class="line"><span class="meta">&gt;</span> sort -r files.txt | uniq</span><br><span class="line">9</span><br><span class="line">8</span><br><span class="line">3</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>uniq的输入要求必须排序过，如果已经排序sort会返回0的退出码，否则返回非0</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> cat data.txt</span><br><span class="line">9 mac 8000</span><br><span class="line">7 dell 7000</span><br><span class="line">10 lenovo 6000</span><br><span class="line"><span class="meta">&gt;</span> sort -nk 1 data.txt  #按数字大小</span><br><span class="line">7 dell 7000</span><br><span class="line">9 mac 8000</span><br><span class="line">10 lenovo 6000</span><br><span class="line"><span class="meta">&gt;</span> sort -k 1 data.txt #字母序</span><br><span class="line">10 lenovo 6000</span><br><span class="line">7 dell 7000</span><br><span class="line">9 mac 8000</span><br><span class="line"><span class="meta">&gt;</span> sort -rk 3 data.txt</span><br><span class="line">9 mac 8000</span><br><span class="line">7 dell 7000</span><br><span class="line">10 lenovo 6000</span><br><span class="line"><span class="meta">&gt;</span> sort -k 2.2 data.txt  #按照第二列第二个字符排列，因为默认的分隔是把 "非空白到空白转换" 做为分段的依据，所以按照d,l,m排列</span><br><span class="line">7 dell 7000</span><br><span class="line">10 lenovo 6000</span><br><span class="line">9 mac 8000</span><br><span class="line"><span class="meta">&gt;</span> sort -t ' ' -k 2.2 data.txt  #-t 制定空格作为分隔符，第二列第二个字符所以按照a,e,e排列</span><br><span class="line">9 mac 8000</span><br><span class="line">7 dell 7000</span><br><span class="line">10 lenovo 6000</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>-o 输出到指定文件，可以覆盖原文件<br>–f 忽略大小写<br>-c 检查文件是否已排好序，如果乱序，则输出第一个乱序的行的相关信息，最后返回1<br>-C 检查文件是否已排好序，如果乱序，不输出内容，仅返回1<br>-M 以月份来排序，比如JAN小于FEB等等<br>-b 忽略每一行前面的所有空白部分<br>-z 用<code>\0</code>结束行<br>-m 合并<br>-u 删除重复行</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> cat files.txt</span><br><span class="line">3</span><br><span class="line">3</span><br><span class="line">9</span><br><span class="line">3</span><br><span class="line">2</span><br><span class="line">8</span><br><span class="line"><span class="meta">&gt;</span> sort files.txt -o files.txt</span><br><span class="line"><span class="meta">&gt;</span> uniq -u files.txt  #只显示唯一行</span><br><span class="line">2</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line"><span class="meta">&gt;</span> uniq -c files.txt #统计次数</span><br><span class="line">      1 2</span><br><span class="line">      3 3</span><br><span class="line">      1 8</span><br><span class="line">      1 9</span><br><span class="line"><span class="meta">&gt;</span> uniq -d files.txt #显示重复行</span><br><span class="line">3</span><br><span class="line"><span class="meta">&gt;</span> cat data.txt</span><br><span class="line">9mac8000</span><br><span class="line">7dell7000</span><br><span class="line">1lenovo6000</span><br><span class="line"><span class="meta">&gt;</span> cat data.txt | uniq -s 2 -w 1  # 忽略前两个字符比较一个字符</span><br><span class="line">9mac8000</span><br><span class="line">7dell7000</span><br></pre></td></tr></table></figure>
+
+<h2 id="mktemp"><a href="#mktemp" class="headerlink" title="mktemp"></a>mktemp</h2><blockquote>
+<p>/tmp目录中的内容系统重启后清空</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> filename=`mktemp`  #反引号运行</span><br><span class="line"><span class="meta">&gt;</span> echo $filename</span><br><span class="line">/tmp/tmp.iBLhJgtGp3</span><br><span class="line"><span class="meta">&gt;</span> filename=`mktemp -d`</span><br><span class="line"><span class="meta">&gt;</span> echo $filename</span><br><span class="line">/tmp/tmp.0ojbVHR0ZG</span><br><span class="line"><span class="meta">&gt;</span> filename=`mktemp -u` #不创建实际文件</span><br><span class="line"><span class="meta">&gt;</span> mktemp test.XXX  #根据模板创建</span><br><span class="line">test.7Ou</span><br></pre></td></tr></table></figure>
+
+<h2 id="split"><a href="#split" class="headerlink" title="split"></a>split</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> dd if=/dev/urandom of=test.file bs=13MB count=1 #创建13m大小的文件</span><br><span class="line">1+0 records in</span><br><span class="line">1+0 records out</span><br><span class="line">13000000 bytes (13 MB) copied, 0.0903847 s, 144 MB/s</span><br><span class="line"><span class="meta">&gt;</span> split -b 1m test.file  #以1M大小划分</span><br><span class="line"><span class="meta">&gt;</span> ls</span><br><span class="line">test.file  xaa  xab  xac  xad  xae  xaf  xag  xah  xai  xaj  xak  xal  xam</span><br><span class="line"><span class="meta">&gt;</span> rm -f x*    #删除x开头所有文件</span><br><span class="line"><span class="meta">&gt;</span> split -b 5m test.file  -d -a 3 split  #数字结尾 结尾三个数字 split开头</span><br><span class="line"><span class="meta">&gt;</span> ls</span><br><span class="line">split000  split001  split002  test.file</span><br><span class="line"><span class="meta">&gt;</span> split -l 10 test.file  #10行分</span><br><span class="line"><span class="meta">&gt;</span> cat server.log</span><br><span class="line">SERVER-1</span><br><span class="line">[connection]</span><br><span class="line">[disconnect]</span><br><span class="line">[connection]</span><br><span class="line">[disconnect]</span><br><span class="line">SERVER-2</span><br><span class="line">[connection]</span><br><span class="line">[disconnect]</span><br><span class="line">SERVER-3</span><br><span class="line">[disconnect]</span><br><span class="line">[connection]</span><br><span class="line"><span class="meta">&gt;</span> csplit server.log /SERVER/ -n 1 &#123;*&#125; -f split -b "%d.log"  #/SERVER/正则匹配 -n 1 文件后数字后缀一个 -f 前缀是split -b 后缀格式 &#123;*&#125; 分割执行次数</span><br><span class="line">0</span><br><span class="line">61</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line"><span class="meta">&gt;</span> ls</span><br><span class="line">server.log  split0.log  split1.log  split2.log  split3.log</span><br><span class="line"><span class="meta">&gt;</span> cat split0.log   #split0.log是分隔前的，所以没有内容</span><br><span class="line"><span class="meta">&gt;</span> cat split1.log</span><br><span class="line">SERVER-1</span><br><span class="line">[connection]</span><br><span class="line">[disconnect]</span><br><span class="line">[connection]</span><br><span class="line">[disconnect]</span><br></pre></td></tr></table></figure>
+
+<h2 id><a href="#" class="headerlink" title="{ }"></a>{ }</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> filename=some.tar.gz  #必须使用变量</span><br><span class="line"><span class="meta">&gt;</span> name=$&#123;filename%.*&#125; #从尾向前匹配.*短数据删除</span><br><span class="line"><span class="meta">&gt;</span> echo $name</span><br><span class="line">new.tar</span><br><span class="line"><span class="meta">&gt;</span> name=$&#123;filename%%.*&#125; #从尾向前匹配.*长数据删除</span><br><span class="line"><span class="meta">&gt;</span> echo $name</span><br><span class="line">some</span><br><span class="line"><span class="meta">&gt;</span> name=$&#123;filename#*.&#125;  #从前向尾匹配*.短数据删除</span><br><span class="line"><span class="meta">&gt;</span> echo $name</span><br><span class="line">tar.gz</span><br><span class="line"><span class="meta">&gt;</span> name=$&#123;filename##*.&#125; #从前向尾匹配*.长数据删除</span><br><span class="line"><span class="meta">&gt;</span> echo $name</span><br><span class="line">gz</span><br><span class="line"><span class="meta">&gt;</span> filename=new.new.some</span><br><span class="line"><span class="meta">&gt;</span> name=$&#123;filename/new/hi&#125; #new替换成hi，值替换一次</span><br><span class="line"><span class="meta">&gt;</span> echo $name</span><br><span class="line">hi.new.some</span><br><span class="line"><span class="meta">&gt;</span> name=$&#123;filename//new/hi&#125; </span><br><span class="line"><span class="meta">&gt;</span> echo $name</span><br><span class="line">hi.hi.some</span><br></pre></td></tr></table></figure>
+
+<p>抄一张图，懒得挨个试了<br><img src="http://cdn.simonyang.club/20181125-20150620201642326.jpg" alt="20181125-20150620201642326"></p>
+<h2 id="rename-mv-cp"><a href="#rename-mv-cp" class="headerlink" title="rename mv cp"></a>rename mv cp</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">count=1;</span><br><span class="line">for img in `find . -maxdepth 1 -iname "*.jpg" -o -iname "*.png" -type f`;</span><br><span class="line">do</span><br><span class="line">    new=image-$count.$&#123;img##*.&#125;   #重命名</span><br><span class="line">    mv "$img" "$new"   # 移动</span><br><span class="line">    let count++</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> rename JPG jpg *.JPG</span><br><span class="line"><span class="meta">&gt;</span> ls</span><br><span class="line">new.jpg  old.jpg</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在我的服务器上rename正则使用失败，网上查不到原因</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> mkdir pic</span><br><span class="line"><span class="meta">&gt;</span> mv new.jpg ./pic</span><br><span class="line"><span class="meta">&gt;</span> ls</span><br><span class="line">old.jpg  pic</span><br><span class="line"><span class="meta">&gt;</span> (cd pic;ls)</span><br><span class="line">new.jpg</span><br><span class="line"><span class="meta">&gt;</span> cp old.jpg ./pic</span><br><span class="line"><span class="meta">&gt;</span> (cd pic;ls)</span><br><span class="line">new.jpg  old.jpg</span><br><span class="line"><span class="meta">&gt;</span> ls</span><br><span class="line">old.jpg  pic</span><br></pre></td></tr></table></figure>
+
+<h2 id="look-read"><a href="#look-read" class="headerlink" title="look read"></a>look read</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> cat word.txt</span><br><span class="line">abc</span><br><span class="line">bcd</span><br><span class="line">cde</span><br><span class="line"><span class="meta">&gt;</span> look bc word.txt  #寻找bc开头的行</span><br><span class="line">bcd</span><br><span class="line"><span class="meta">&gt;</span> grep "^a" word.txt  #寻找a开头的行</span><br><span class="line">abc</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">read -p "Enter your name:" name</span><br><span class="line">echo "you name is $name"</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> echo -e "hello\n" | ./hello.sh</span><br><span class="line">you name is hello</span><br><span class="line"><span class="meta">&gt;</span> echo -e "simon\n" &gt; input</span><br><span class="line"><span class="meta">&gt;</span> ./hello.sh &lt;input</span><br><span class="line">you name is simon</span><br></pre></td></tr></table></figure>
+
+<h2 id="amp-后台执行"><a href="#amp-后台执行" class="headerlink" title="&amp;后台执行"></a>&amp;后台执行</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">pidarray=()</span><br><span class="line">for file in File1.iso File2.iso;</span><br><span class="line">do</span><br><span class="line">    md5sum $file &amp;     #后台运行</span><br><span class="line">    pidarray+=("$!")   #获取进程pid</span><br><span class="line">done</span><br><span class="line">wait $&#123;pidarray[@]&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="以文件之名"><a href="#以文件之名" class="headerlink" title="以文件之名"></a>以文件之名</h1>
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2018/11/16/2018/software_manager/" rel="next" title="软件安装管家">
+                  <i class="fa fa-chevron-left"></i> 软件安装管家
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2018/11/27/2018/hexo_blog/" rel="prev" title="Hexo博客搭建">
+                  Hexo博客搭建 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc">
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#小试牛刀"><span class="nav-number">1.</span> <span class="nav-text">小试牛刀</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打印"><span class="nav-number">1.2.</span> <span class="nav-text">打印</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境变量和变量"><span class="nav-number">1.3.</span> <span class="nav-text">环境变量和变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件描述符"><span class="nav-number">1.4.</span> <span class="nav-text">文件描述符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">1.5.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#别名"><span class="nav-number">1.6.</span> <span class="nav-text">别名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取终端信息"><span class="nav-number">1.7.</span> <span class="nav-text">获取终端信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间和日期"><span class="nav-number">1.8.</span> <span class="nav-text">时间和日期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试脚本"><span class="nav-number">1.9.</span> <span class="nav-text">调试脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">1.10.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将输出写入变量"><span class="nav-number">1.11.</span> <span class="nav-text">将输出写入变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#read"><span class="nav-number">1.12.</span> <span class="nav-text">read</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行命令直至成功"><span class="nav-number">1.13.</span> <span class="nav-text">运行命令直至成功</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字段分隔符-IFS"><span class="nav-number">1.14.</span> <span class="nav-text">字段分隔符 IFS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比较"><span class="nav-number">1.15.</span> <span class="nav-text">比较</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命令之乐"><span class="nav-number">2.</span> <span class="nav-text">命令之乐</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cat"><span class="nav-number">2.1.</span> <span class="nav-text">cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#script"><span class="nav-number">2.2.</span> <span class="nav-text">script</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find"><span class="nav-number">2.3.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xargs"><span class="nav-number">2.4.</span> <span class="nav-text">xargs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tr"><span class="nav-number">2.5.</span> <span class="nav-text">tr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#md5sum-sha1sum"><span class="nav-number">2.6.</span> <span class="nav-text">md5sum sha1sum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gpg-base64"><span class="nav-number">2.7.</span> <span class="nav-text">gpg base64</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sort-uniq"><span class="nav-number">2.8.</span> <span class="nav-text">sort uniq</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mktemp"><span class="nav-number">2.9.</span> <span class="nav-text">mktemp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#split"><span class="nav-number">2.10.</span> <span class="nav-text">split</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.11.</span> <span class="nav-text">{ }</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rename-mv-cp"><span class="nav-number">2.12.</span> <span class="nav-text">rename mv cp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#look-read"><span class="nav-number">2.13.</span> <span class="nav-text">look read</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#amp-后台执行"><span class="nav-number">2.14.</span> <span class="nav-text">&amp;后台执行</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#以文件之名"><span class="nav-number">3.</span> <span class="nav-text">以文件之名</span></a></li></ol></div>
+          </div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/muse.js?v=7.3.0"></script>
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/post-details.js?v=7.3.0"></script>
+
+
+</body>
+</html>

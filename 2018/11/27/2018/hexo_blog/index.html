@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。  本文默认操作系统为Windows x64Mac用户安装node和git时选择对应版本即可sssimonyang是我的用户名部分操作可能有warning出现，无error即可  安装Node.js和Git Node.js https://nodejs.">
+<meta name="keywords" content="share">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo博客搭建">
+<meta property="og:url" content="http://yoursite.com/2018/11/27/2018/hexo_blog/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。  本文默认操作系统为Windows x64Mac用户安装node和git时选择对应版本即可sssimonyang是我的用户名部分操作可能有warning出现，无error即可  安装Node.js和Git Node.js https://nodejs.">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://cdn.simonyang.club/20181127-QQ%E6%88%AA%E5%9B%BE20181127192542.jpg">
+<meta property="og:updated_time" content="2019-08-21T06:28:49.999Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo博客搭建">
+<meta name="twitter:description" content="Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。  本文默认操作系统为Windows x64Mac用户安装node和git时选择对应版本即可sssimonyang是我的用户名部分操作可能有warning出现，无error即可  安装Node.js和Git Node.js https://nodejs.">
+<meta name="twitter:image" content="http://cdn.simonyang.club/20181127-QQ%E6%88%AA%E5%9B%BE20181127192542.jpg">
+  <link rel="canonical" href="http://yoursite.com/2018/11/27/2018/hexo_blog/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Hexo博客搭建 | Hexo</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/27/2018/hexo_blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Hexo博客搭建
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-11-27 20:17:20" itemprop="dateCreated datePublished" datetime="2018-11-27T20:17:20+08:00">2018-11-27</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-21 14:28:49" itemprop="dateModified" datetime="2019-08-21T14:28:49+08:00">2019-08-21</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+<blockquote>
+<p>本文默认操作系统为Windows x64<br>Mac用户安装node和git时选择对应版本即可<br>sssimonyang是我的用户名<br>部分操作可能有warning出现，无error即可</p>
+</blockquote>
+<h1 id="安装Node-js和Git"><a href="#安装Node-js和Git" class="headerlink" title="安装Node.js和Git"></a>安装Node.js和Git</h1><ul>
+<li>Node.js <a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a> 选择LTS版本，然后安装，一路默认即可</li>
+<li>Git <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a> 点击windows下载，然后安装，一路默认即可</li>
+</ul>
+<p>验证一下安装成功没有<br>打开命令行（windows用户 win+r 然后输入 cmd 回车）<br>在cmd里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\sssimonyang&gt;node -v</span><br><span class="line">v8.9.3</span><br><span class="line">C:\Users\sssimonyang&gt;git --version</span><br><span class="line">git version 2.15.0.windows.1</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>你们的版本肯定比我的新，无错误即可</p>
+</blockquote>
+<p>然后继续，下文中&lt;&gt;内容需替换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\sssimonyang&gt;git config --global user.name &lt;your username&gt;</span><br><span class="line">C:\Users\sssimonyang&gt;git config --global user.email &lt;your email&gt;</span><br><span class="line">C:\Users\sssimonyang&gt;npm install -g hexo</span><br></pre></td></tr></table></figure>
+
+<p>切换文件夹</p>
+<ul>
+<li><p><code>cd &lt;folder&gt;</code> 切换到你想放置博客的文件夹，cmd中切换盘符的命令为 <code>D:</code> 然后回车<br>比如我想放在<code>E:\MyFiles</code>下面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\sssimonyang&gt;E:</span><br><span class="line">E:\&gt;cd MyFiles</span><br><span class="line">E:\MyFiles&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>也可以在文件资源管理器的对应文件夹页面按住shift同时点击右键打开powershell，powershell是cmd的增强版，对这篇文章而言两者相同</p>
+</li>
+</ul>
+<p>cmd</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">E:\MyFiles&gt;hexo init blog #这里会新建一个文件夹，blog名字可以随意更换</span><br><span class="line">E:\MyFiles&gt;cd blog</span><br><span class="line">E:\MyFiles\blog&gt;npm install</span><br><span class="line">E:\MyFiles\blog&gt;hexo server</span><br></pre></td></tr></table></figure>
+
+<p>打开 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 有页面即成功</p>
+<h1 id="注册Github"><a href="#注册Github" class="headerlink" title="注册Github"></a>注册Github</h1><p><a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a> 注册然后对应邮箱激活，一定要激活</p>
+<blockquote>
+<p>取个好的用户名,不要有大写、符号、空格等(有的话后续可能出现一些问题)  </p>
+</blockquote>
+<p>然后点击Start a project新建一个Repository(仓库)<br>Repository Name处填写<code>&lt;your username&gt;.github.io</code>,此处<code>&lt;your username&gt;</code>和你的github用户名必须一模一样</p>
+<blockquote>
+<p>我的github用户名是sssimonyang，所以Repository Name就是<code>sssimonyang.github.io</code>，博客地址也是这个</p>
+</blockquote>
+<p>Description处选填,勾选Pubic,不勾选Readme<br>点击Create新建<br><code>https://github.com/&lt;your username&gt;/&lt;your username&gt;.github.io.git</code> 就是你的Repository地址</p>
+<h1 id="向Repository传入内容"><a href="#向Repository传入内容" class="headerlink" title="向Repository传入内容"></a>向Repository传入内容</h1><p>打开<code>E:\MyFiles\blog\_config.yml</code><br>将deploy处更改如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/&lt;your username&gt;/&lt;your username&gt;.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意配置项的冒号后面要用空格隔开</p>
+</blockquote>
+<p>cmd</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E:\MyFiles\blog&gt;npm install hexo-deployer-git --save</span><br><span class="line">E:\MyFiles\blog&gt;hexo d -g</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>中途会出现登陆git的页面</p>
+</blockquote>
+<p>最后出现<code>INFO  Deploy done: git</code>即成功</p>
+<h1 id="配置github-io"><a href="#配置github-io" class="headerlink" title="配置github.io"></a>配置github.io</h1><p>登陆github，进入<code>&lt;your username&gt;.github.io</code> 仓库<br>仓库如果有内容说明上一步的<code>hexo d -g</code>确实成功了，不然的话重回上一步检查deploy<br>点击右侧Settings，拉到下面GitHub Pages，Source处选择master branch,然后save，保存后页面会变成<br><img src="http://cdn.simonyang.club/20181127-QQ%E6%88%AA%E5%9B%BE20181127192542.jpg" alt="20181127-QQ截图20181127192542"><br>表明你的网站就是<code>https://&lt;your username&gt;.github.io</code><br>打开 <code>https://&lt;your username&gt;.github.io</code> 即是博客页面，如果没有页面的话稍等片刻</p>
+<h1 id="写博客，维护博客"><a href="#写博客，维护博客" class="headerlink" title="写博客，维护博客"></a>写博客，维护博客</h1><p>hexo 文档 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a><br>新建博客</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">E:\MyFiles\blog&gt;hexo new &lt;blog name&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>E:\MyFiles\blog\source\_posts\&lt;blog name&gt;.md</code> 即为博客文章<br>注意文章的编码应为utf-8<br>博客采用markdown语法<br>Markdown 文档 <a href="https://markdown-zh.readthedocs.io/en/latest/" target="_blank" rel="noopener">https://markdown-zh.readthedocs.io/en/latest/</a></p>
+<h1 id="换用ssh协议免登陆"><a href="#换用ssh协议免登陆" class="headerlink" title="换用ssh协议免登陆"></a>换用ssh协议免登陆</h1><p>不想隔一段时间<code>hexo d -g</code>就要重新登陆,如何实现<br>cmd</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Si tu m&apos;aimes&gt;ssh-keygen -t rsa -C &quot;&lt;your email&gt;&quot;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>一路回车</p>
+</blockquote>
+<p>看一下你的提示信息，在主目录下有文件<code>~/.ssh/id_rsa.pub</code>生成<br>我的文件路径是<code>C:\Users\Si tu m&#39;aimes\.ssh\id_rsa.pub</code><br>用记事本打开<code>id_rsa.pub</code>，复制内容<br>登陆github，点击右上角头像进入settings<br>选择SSH and GPG keys，选择new SSH key<br>Title随便填，key内粘贴你的id_rsa.pub文件内容，点击Add保存<br>cmd</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Si tu m&apos;aimes&gt;ssh -T git@github.com #输入yes</span><br></pre></td></tr></table></figure>
+
+<p>将deploy处更改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:&lt;your username&gt;/&lt;your username&gt;.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<p>然后在cmd中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Si tu m&apos;aimes&gt;hexo d -g</span><br></pre></td></tr></table></figure>
+
+<p>这样便不再需要每次git时登陆</p>
+<blockquote>
+<p>这些操作的目的是为了使用ssh协议将博客推送到github</p>
+</blockquote>
+<h1 id="换一个模板"><a href="#换一个模板" class="headerlink" title="换一个模板"></a>换一个模板</h1><p>百度寻找模板，按照页面提示要求<code>git clone</code>然后更改_config.yml<br><code>theme: &lt;your theme name&gt;</code></p>
+<h1 id="将博客放到服务器上"><a href="#将博客放到服务器上" class="headerlink" title="将博客放到服务器上"></a>将博客放到服务器上</h1><p>安装git</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install git</span><br></pre></td></tr></table></figure>
+
+<p>在home下创建一个git仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /home</span><br><span class="line">mkdir git</span><br><span class="line">cd git</span><br><span class="line">git init --bare hexo.git</span><br></pre></td></tr></table></figure>
+
+<p>在hooks下面创建一个post-receive</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /home/git/hexo.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
+
+<p>post-receive内容更改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">git --work-tree=/data/hexo --git-dir=/home/git/hexo.git checkout -f</span><br></pre></td></tr></table></figure>
+
+<p>接着更改<code>post-receive</code>的权限，使他可执行，创建博客目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 755 /home/git/hexo.git/hooks/post-receive</span><br><span class="line">mkdir /data/hexo</span><br></pre></td></tr></table></figure>
+
+<p>找到你的ssh key，在我的电脑上在这</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Si tu m&apos;aimes\.ssh\id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<p>复制文本内容，然后在服务器上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /root/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+<p>粘贴 保存<br>然后在我的电脑上，cmd中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Si tu m&apos;aimes&gt;ssh root@&lt;your server ip&gt; #输入yes</span><br></pre></td></tr></table></figure>
+
+<p>最后更改_config.yml内容<br>当有两个deploy时</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">- type: git</span><br><span class="line">  repository: git@github.com:&lt;your username&gt;/&lt;your username&gt;.github.io.git</span><br><span class="line">  branch: master</span><br><span class="line">- type: git</span><br><span class="line">  repository: root@&lt;your server ip&gt;:/home/git/hexo.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<p><code>hexo d -g</code>结束，Bingo！</p>
+<blockquote>
+<p>有问题请留言</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/share/" rel="tag"># share</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2018/11/26/2018/linux-shell/" rel="next" title="linux shell 脚本攻略">
+                  <i class="fa fa-chevron-left"></i> linux shell 脚本攻略
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2018/11/27/2018/python-basic-review-1/" rel="prev" title="Python复习（一）">
+                  Python复习（一） <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc">
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Node-js和Git"><span class="nav-number">1.</span> <span class="nav-text">安装Node.js和Git</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注册Github"><span class="nav-number">2.</span> <span class="nav-text">注册Github</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#向Repository传入内容"><span class="nav-number">3.</span> <span class="nav-text">向Repository传入内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置github-io"><span class="nav-number">4.</span> <span class="nav-text">配置github.io</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写博客，维护博客"><span class="nav-number">5.</span> <span class="nav-text">写博客，维护博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#换用ssh协议免登陆"><span class="nav-number">6.</span> <span class="nav-text">换用ssh协议免登陆</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#换一个模板"><span class="nav-number">7.</span> <span class="nav-text">换一个模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将博客放到服务器上"><span class="nav-number">8.</span> <span class="nav-text">将博客放到服务器上</span></a></li></ol></div>
+          </div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/muse.js?v=7.3.0"></script>
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/post-details.js?v=7.3.0"></script>
+
+
+</body>
+</html>
