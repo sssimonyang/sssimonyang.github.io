@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="SSSimon Yang">
+<meta property="og:url" content="https://blog.simonyang.club/page/4/index.html">
+<meta property="og:site_name" content="SSSimon Yang">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SSSimon Yang">
+  <link rel="canonical" href="https://blog.simonyang.club/page/4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>SSSimon Yang</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SSSimon Yang</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-wrapper">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-home">
+            
+  <section id="posts" class="posts-expand">
+      
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.simonyang.club/2018/11/06/2018/shortcut/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SSSimon Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SSSimon Yang">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/11/06/2018/shortcut/" class="post-title-link" itemprop="url">学会快捷键的骚操作</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-06 19:09:36" itemprop="dateCreated datePublished" datetime="2018-11-06T19:09:36+08:00">2018-11-06</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-11-27 18:40:33" itemprop="dateModified" datetime="2018-11-27T18:40:33+08:00">2018-11-27</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2018/11/06/2018/shortcut/" class="post-meta-item leancloud_visitors" data-flag-title="学会快捷键的骚操作" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>本文默认win10系统</p>
+</blockquote>
+<h2 id="触摸板"><a href="#触摸板" class="headerlink" title="触摸板"></a>触摸板</h2><p>你可能不知道的触摸板使用方法<br><img src="http://cdn.simonyang.club/2018115-QQ%E6%88%AA%E5%9B%BE20181105160926.jpg" alt="2018115-QQ截图20181105160926"><br>当然这些还可以自己设置(在你的设置里，自己挖掘一下)<br><img src="http://cdn.simonyang.club/2018115-QQ%E6%88%AA%E5%9B%BE20181105163201.jpg" alt="2018115-QQ截图20181105163201"></p>
+<h2 id="鼠标"><a href="#鼠标" class="headerlink" title="鼠标"></a>鼠标</h2><p>下面讲一下鼠标<br>鼠标其实除了左键右键其实还有中键<br>什么，中键？<br>对，就是那个滚轮，他还可以向下按，向下按啊<br>（如果你的鼠标够高级，它还可以向左拨，向右拨）  </p>
+<h3 id="向下按"><a href="#向下按" class="headerlink" title="向下按"></a>向下按</h3><ol>
+<li>浏览器链接在新标签中打开</li>
+<li>关闭标签（在浏览器标签上点击）</li>
+<li>点击任务栏预览页关闭程序（当你把鼠标放在任务栏上程序图标上时，会出现一个预览的小窗口，中键点击这个小窗口关闭这个程序）</li>
+<li>打开一个新的程序窗口（当一个程序已经打开，这时你想要再打开一个相同程序的时候）</li>
+<li>查看 QQ 聊天信息的准确时间<h3 id="向左拨"><a href="#向左拨" class="headerlink" title="向左拨"></a>向左拨</h3></li>
+<li>浏览器返回前一个页面</li>
+<li>文件资源管理器返回上一个位置<h3 id="向右拨"><a href="#向右拨" class="headerlink" title="向右拨"></a>向右拨</h3></li>
+<li>撤销刚刚向左拨的操作</li>
+</ol>
+<blockquote>
+<p>感谢旺隆<br><a href="https://zhuanlan.zhihu.com/p/32564388" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/32564388</a></p>
+</blockquote>
+<h2 id="键盘"><a href="#键盘" class="headerlink" title="键盘"></a>键盘</h2><p>小白注意：</p>
+<ol>
+<li>笔记本上的Fn键是为了配合F1-F12键上右下角的小图标使用的。使用Fn+Esc组合键可以切换Fn+F1..F12和F1..F12的功能，如果你按了F5并没有刷新页面，那么按Fn+Esc切换后再按F5或者按一下Fn+F5就可以了；</li>
+<li>Tab缩进与n个空格不一样；</li>
+<li>左边Alt旁边的那个窗口键叫Win键。</li>
+</ol>
+<hr>
+<p>好了下面正式开始</p>
+<h3 id="单键"><a href="#单键" class="headerlink" title="单键"></a>单键</h3><pre><code>Esc：退出
+F1：帮助
+F2：选中文件时重命名
+F3：搜索
+F4：文件资源管理器中光标移至地址栏
+F5：刷新、重新整理
+F6：浏览器光标移至地址栏
+F8：开机时进入安全模式
+F11: 全屏显示
+F12：浏览器中打开开发者页面
+PrtScr：PrintScreen的缩写，按一下可以截屏，然后Ctrl+V粘贴，不过我更喜欢用qq的截屏功能
+Insert：切换输入时的插入与替换操作
+Delete：移动文件到回收站、删除光标右侧的一个字符
+Tab：页面移动
+CapsLock：大写锁定
+Shift：按住时点击鼠标连续多选
+Ctrl：按住时点击鼠标间隔多选</code></pre><h3 id="组合键"><a href="#组合键" class="headerlink" title="组合键"></a>组合键</h3><p><em>只罗列一些比较常用的，如果需要全部整理的话，请留言</em></p>
+<pre><code>Ctrl+1,2,3：切换到从左边数起第1,2,3个标签
+Ctrl+C：复制
+Ctrl+X：剪切
+Ctrl+V：粘贴
+Ctrl+A：全选
+Ctrl+Z：撤销
+Ctrl+S：保存
+Ctrl+O：打开
+Ctrl+P: 打印
+Ctrl+F：搜索
+Ctrl+W：关闭当前页面
+Ctrl+Shift+W：关闭所有页面
+Ctrl+T：打开新的页面
+Ctrl+Shift+T：打开刚刚关闭的页面
+Ctrl+F5：强制刷新
+Ctrl+Tab：切换页面
+Ctrl+Shift+Tab：反向切换页面
+Ctrl+N：生成新程序页面
+Ctrl+Shift+N：新建文件夹
+Ctrl+Alt+A：QQ截图
+
+Alt+F4：关闭当前程序
+Alt+Tab：切换程序
+Alt+Shift+Tab：反向切换程序
+
+Win+Tab：激活任务视图
+Win+A：激活操作中心
+Win+D：显示桌面
+Win+E：打开文件资源管理器
+Win+I：打开设置
+Win+L：锁定屏幕
+Win+P：投影屏幕
+Win+R：运行
+Win+X：打开高级用户功能
+Win+1/2/3：打开任务栏中固定的程序
+win+空格：输入法切换
+
+Shift+Delete：永久删除文件
+Ctrl+Shift+Esc：打开任务资源管理器
+Ctrl+Alt+Delete：终结计算机的异常状态
+拖动某一项时按CTRL复制所选项目</code></pre><blockquote>
+<p>感谢每天学点电脑知识<br>电脑快捷键使用大全，秒变电脑大神！ - 每天学点电脑知识的文章 - 知乎<br><a href="https://zhuanlan.zhihu.com/p/38998190" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/38998190</a></p>
+</blockquote>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>小常识：<br>中文输入时的标点符号和英文输入时的标点符号不一样，不一样！看一下<br>中文：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">·-=【】、；‘，。/</span><br><span class="line">~！@#￥%……&amp;*（）——+&#123;&#125;|：“《》？</span><br></pre></td></tr></table></figure>
+
+<p>英文：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">`-=[]\;&apos;,./</span><br><span class="line">~!@#$%^&amp;*()_+&#123;&#125;|:&quot;&lt;&gt;?</span><br></pre></td></tr></table></figure>
+
+<p>除了少数几个其他基本上都不一样，写代码的时候一定要小心噢！</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.simonyang.club/2018/11/06/2018/onetab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SSSimon Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SSSimon Yang">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/11/06/2018/onetab/" class="post-title-link" itemprop="url">onetab解放你的chrome多标签</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-06 19:09:36 / 修改时间：20:07:42" itemprop="dateCreated datePublished" datetime="2018-11-06T19:09:36+08:00">2018-11-06</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2018/11/06/2018/onetab/" class="post-meta-item leancloud_visitors" data-flag-title="onetab解放你的chrome多标签" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天介绍一个Chrome插件</p>
+<h1 id="onetab"><a href="#onetab" class="headerlink" title="onetab"></a>onetab</h1><p>其实具体来说呢, onetab的出现是为了解决像这样的问题<br><img src="http://cdn.simonyang.club/20181031-QQ%E6%88%AA%E5%9B%BE20181031173343.jpg" alt="20181031-QQ截图20181031173343"><br>哇，这么多标签！<br>我每个标签都有用！<br>我每个标签都不能关！<br>啊啊啊！<br>炸裂！  </p>
+<hr>
+<p>当然如果你习惯性关标签请直接pass！</p>
+<p>在我的日常使用中是经常出现这种状况的，因为我经常为了解决一个技术问题打开很多页面，每个页面都有那么一点我需要的东西，所以不能关，但是开着也很烦人，还占内存，众所周知，Chrome是个占内存大户，怎么办捏！  </p>
+<hr>
+<p>经过我的一番寻找，找到了onetab这个牛逼玩意<br><a href="https://www.one-tab.com/" target="_blank" rel="noopener">官网在这</a><br>看一下官网<br><img src="http://cdn.simonyang.club/20181031-QQ%E6%88%AA%E5%9B%BE20181031172618.jpg" alt="20181031-QQ截图20181031172618"><br>可以省95%内存，很棒<br>再看一下具体介绍<br><img src="http://cdn.simonyang.club/20181031-QQ%E6%88%AA%E5%9B%BE20181031172635.jpg" alt="20181031-QQ截图20181031172635"><br>说是把所有页面汇集成一个list<br>那我们用一下呗<br>点击安装，装好之后<br><img src="http://cdn.simonyang.club/20181031-QQ%E6%88%AA%E5%9B%BE20181031173343.jpg" alt="20181031-QQ截图20181031173343">点击这里面的右上角的onetab标签<br>duang的一下<br>就变成这样了<br><img src="http://cdn.simonyang.club/20181031-QQ%E6%88%AA%E5%9B%BE20181031173820.jpg" alt="20181031-QQ截图20181031173820"><br>所有的标签都汇集到了一起，需要的点开重新加载就好了<br>当然<br>每一次点onetab的标签列表是单独的<br>像这样<br><img src="http://cdn.simonyang.club/20181031-QQ%E6%88%AA%E5%9B%BE20181031173956.jpg" alt="20181031-QQ截图20181031173956"><br>其实我还会把onetab当收藏夹用，把好的网址都放到一个标签列表里，这样chrome的书签栏就不会炸掉了</p>
+<p>什么？<br>你不是chrome用户，那有firefox吗，firefox浏览器也有这个插件<br>什么？<br>你用360、搜狗？<br>换chrome吧<br>chrome大法好，哈哈哈哈  </p>
+<p>什么？<br>你不能科学上网装不了插件<br>插件从这下<br><a href="https://www.chromefor.com/" target="_blank" rel="noopener">https://www.chromefor.com/</a><br>然后百度一波chrome怎么装本地插件<br>Bingo！</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.simonyang.club/2018/11/05/2018/huoyingjiang/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SSSimon Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SSSimon Yang">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/11/05/2018/huoyingjiang/" class="post-title-link" itemprop="url">火萤酱介绍</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-05 14:09:36" itemprop="dateCreated datePublished" datetime="2018-11-05T14:09:36+08:00">2018-11-05</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-11-06 20:01:26" itemprop="dateModified" datetime="2018-11-06T20:01:26+08:00">2018-11-06</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">share</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2018/11/05/2018/huoyingjiang/" class="post-meta-item leancloud_visitors" data-flag-title="火萤酱介绍" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天来推荐一个神器，电脑必备，查文件神器<br>主要是我经常用而且还觉得不错，他就是</p>
+<h1 id="火萤酱"><a href="#火萤酱" class="headerlink" title="火萤酱"></a>火萤酱</h1><p>让我们来看看他的官网<br><a href="https://j.huoying666.com/" target="_blank" rel="noopener">官网</a><br><img src="http://cdn.simonyang.club/20181030-QQ%E6%88%AA%E5%9B%BE20181030184420.jpg" alt="20181030-QQ截图20181030184420"><br>嗯，看起来很牛逼的样子，我们下载下来用一下<br><img src="http://cdn.simonyang.club/20181030-QQ%E6%88%AA%E5%9B%BE2018.jpg" alt="20181030-QQ截图2018"><br>双击ctrl是打开魔法大门的钥匙啊！<br>安装好之后试一试<br><img src="http://cdn.simonyang.club/20181030-QQ%E6%88%AA%E5%9B%BE20181030184707.jpg" alt="20181030-QQ截图20181030184707"><br>搜的还挺快，除了本地搜东西，还可以shift切换到网络搜索<br><img src="http://cdn.simonyang.club/20181030-QQ%E6%88%AA%E5%9B%BE20181030184837.jpg" alt="20181030-QQ截图20181030184837"><br>这些搜索其实还可以定制<br>除了本地搜索、网络搜索，其实还有一些常用贴心功能<br>像这些<br><img src="http://cdn.simonyang.club/20181030-QQ%E6%88%AA%E5%9B%BE20181030185027.jpg" alt="20181030-QQ截图20181030185027"><br>是不是不错，尝试一下吧，我真的没拿广告费<br>（火萤酱本地搜索功能由内置的everything提供，everything大家都应该知道，不过火萤酱使用更便捷，yes）  </p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.jpg"
+      alt="SSSimon Yang">
+  <p class="site-author-name" itemprop="name">SSSimon Yang</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/sssimonyang" title="GitHub &rarr; https://github.com/sssimonyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:yangjinkang@126.com" title="E-Mail &rarr; mailto:yangjinkang@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SSSimon Yang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/muse.js?v=7.3.0"></script>
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+
+<script>
+NexT.utils.getScript('http://cdn.simonyang.club/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'vi0YPoBao45UrtepGDCCd40B-gzGzoHsz',
+    appKey: 'iLM1yw4Ul3CpE5AijBWWynyh',
+    placeholder: 'Let me comment',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

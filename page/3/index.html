@@ -4,15 +4,15 @@
 
 
 
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=7.3.0">
   <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
 
 <link rel="stylesheet" href="/css/main.css?v=7.3.0">
@@ -28,7 +28,7 @@
     scheme: 'Muse',
     version: '7.3.0',
     exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -43,25 +43,25 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
-      copy_button: 'Copy',
-      copy_success: 'Copied',
-      copy_failure: 'Copy failed'
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     }
   };
 </script>
 
   <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en">
+<meta property="og:title" content="SSSimon Yang">
+<meta property="og:url" content="https://blog.simonyang.club/page/3/index.html">
+<meta property="og:site_name" content="SSSimon Yang">
+<meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-  <link rel="canonical" href="http://yoursite.com/page/3/">
+<meta name="twitter:title" content="SSSimon Yang">
+  <link rel="canonical" href="https://blog.simonyang.club/page/3/">
 
 
 <script id="page-configurations">
@@ -75,7 +75,7 @@
   };
 </script>
 
-  <title>Hexo</title>
+  <title>SSSimon Yang</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -113,7 +113,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
   <div class="container use-motion">
     <div class="headband"></div>
 
@@ -124,14 +124,14 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">SSSimon Yang</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -151,7 +151,40 @@
       
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
       
@@ -162,14 +195,41 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
   </ul>
 
     
 
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-wrapper">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
 </div>
     </header>
 
@@ -186,21 +246,21 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/25/2018/crypto/">
+    <link itemprop="mainEntityOfPage" href="https://blog.simonyang.club/2018/11/16/2018/software_manager/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="SSSimon Yang">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="SSSimon Yang">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/05/25/2018/crypto/" class="post-title-link" itemprop="url">《图解密码技术》读后总结</a>
+            <a href="/2018/11/16/2018/software_manager/" class="post-title-link" itemprop="url">软件安装管家</a>
           
         </h1>
 
@@ -209,34 +269,26 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
               
 
-              <time title="Created: 2018-05-25 17:24:46" itemprop="dateCreated datePublished" datetime="2018-05-25T17:24:46+08:00">2018-05-25</time>
+              <time title="创建时间：2018-11-16 21:49:36 / 修改时间：21:59:37" itemprop="dateCreated datePublished" datetime="2018-11-16T21:49:36+08:00">2018-11-16</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-12-02 11:24:26" itemprop="dateModified" datetime="2018-12-02T11:24:26+08:00">2018-12-02</time>
-              </span>
             
           
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/reading-notes/" itemprop="url" rel="index"><span itemprop="name">reading notes</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">share</span></a></span>
 
                 
                 
@@ -245,6 +297,16 @@
           
 
           
+            <span id="/2018/11/16/2018/software_manager/" class="post-meta-item leancloud_visitors" data-flag-title="软件安装管家" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  
 
         </div>
       </header>
@@ -255,68 +317,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="密码工具箱："><a href="#密码工具箱：" class="headerlink" title="密码工具箱："></a>密码工具箱：</h2><ul>
-<li>对称密码 </li>
-<li>公钥密码 </li>
-<li>单向散列函数 </li>
-<li>消息认证码 </li>
-<li>数字签名 </li>
-<li>伪随机数生成器</li>
-</ul>
-<h3 id="对称密码"><a href="#对称密码" class="headerlink" title="对称密码"></a>对称密码</h3><p>用相同的密钥进行加密和解密 </p>
-<p>主要算法 </p>
-<ul>
-<li>DES（不建议使用） </li>
-<li>三重DES（DES-EDE2、DES-EDE3）</li>
-<li>AES 新标准</li>
-</ul>
-<h3 id="分组密码的模式"><a href="#分组密码的模式" class="headerlink" title="分组密码的模式"></a>分组密码的模式</h3><ul>
-<li>ECB模式（不应使用） </li>
-<li>CBC模式（推荐使用） </li>
-<li>CFB模式（推荐CTR代替） </li>
-<li>OFB模式（推荐CTR代替） </li>
-<li>CTR模式（推荐使用）</li>
-</ul>
-<h3 id="公钥密码"><a href="#公钥密码" class="headerlink" title="公钥密码"></a>公钥密码</h3><ul>
-<li>公钥解密，私钥加密，接收者生成公钥和私钥，公钥传给发送者</li>
-<li>RSA算法 主要利用求离散对数的难度和大整数质因数分解的复杂度</li>
-</ul>
-<h3 id="混合密码系统"><a href="#混合密码系统" class="headerlink" title="混合密码系统"></a>混合密码系统</h3><p>利用对称密钥加密消息 用公钥密码加密对称密钥</p>
-<h3 id="单向散列函数"><a href="#单向散列函数" class="headerlink" title="单向散列函数"></a>单向散列函数</h3><ul>
-<li>MD5 </li>
-<li>SHA-1算法 </li>
-</ul>
-<h3 id="消息认证码"><a href="#消息认证码" class="headerlink" title="消息认证码"></a>消息认证码</h3><ul>
-<li>确认完整性并进行认证 </li>
-<li>HMAC算法 </li>
-<li>对称密钥计算MAC值 </li>
-</ul>
-<h3 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h3><ul>
-<li>公钥加密生成数字签名 </li>
-<li>私钥解密进行认证  </li>
-<li>对消息的散列值进行签名 </li>
-</ul>
-<h3 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h3><p>为公钥加上数字签名 </p>
-<p>Diffie-Hellman密钥交换 利用有限群的离散对数问题的复杂度</p>
-<h3 id="基于口令的密码"><a href="#基于口令的密码" class="headerlink" title="基于口令的密码"></a>基于口令的密码</h3><p>口令+盐 单向散列函数生成密钥加密密钥</p>
-<h3 id="随机数"><a href="#随机数" class="headerlink" title="随机数"></a>随机数</h3><p>随机性 不可预测性 不可重现性 </p>
-<h3 id="伪随机数生成器"><a href="#伪随机数生成器" class="headerlink" title="伪随机数生成器"></a>伪随机数生成器</h3><ul>
-<li>线性同余法 只具备随机性</li>
-<li>单向散列函数法 具有单向性所以具有不可预测性 </li>
-<li>ANSI X9.17 </li>
-</ul>
-<h3 id="用途总结"><a href="#用途总结" class="headerlink" title="用途总结"></a>用途总结</h3><ul>
-<li>对称密码 机密性的压缩</li>
-<li>公钥密码 机密性的压缩</li>
-<li>单向散列函数 完整性的压缩</li>
-<li>消息认证码 认证的压缩</li>
-<li>数字签名 认证的压缩</li>
-<li>伪随机数生成器 不可预测性的压缩</li>
-</ul>
-<h3 id="综合示例"><a href="#综合示例" class="headerlink" title="综合示例"></a>综合示例</h3><ul>
-<li>完整加密过程<br><img src="https://blog-1254458596.cos.ap-chengdu.myqcloud.com/%E5%8A%A0%E5%AF%86.jpg" alt="加密"></li>
-<li>完整解密过程<br><img src="https://blog-1254458596.cos.ap-chengdu.myqcloud.com/%E8%A7%A3%E5%AF%86.jpg" alt="解密"></li>
-</ul>
+          <p>唉，一共才50多粉丝，我还要安利别人的公众号，真是免费帮别人打广告<br>不过抄过来一篇文章实在不好，广告打就打吧</p>
+<p>明天大一新生就要开始建模大业了，总有人问我matlab怎么装。<br>下面一个公众号解决你所有大学常用软件的安装问题</p>
+<h1 id="软件安装管家"><a href="#软件安装管家" class="headerlink" title="软件安装管家"></a>软件安装管家</h1><p><img src="http://cdn.simonyang.club/20181111-mmexport1541937141613.gif" alt="20181111-mmexport1541937141613"><br>下面是他提供的软件安装教程目录，如果你还是懒得看教程装，就是想花钱要服务，公众号 回复 软件+联系方式 我学会了帮你装，感谢<br><img src="http://cdn.simonyang.club/20181111-S81111-19500198.jpg" alt="20181111-S81111-19500198"><br><img src="http://cdn.simonyang.club/20181111-S81111-19502596.jpg" alt="20181111-S81111-19502596"></p>
 
         
       
@@ -343,21 +346,21 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/20/2018/lab/">
+    <link itemprop="mainEntityOfPage" href="https://blog.simonyang.club/2018/11/10/2018/singledogday/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="SSSimon Yang">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="SSSimon Yang">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/05/20/2018/lab/" class="post-title-link" itemprop="url">生物研究生去处</a>
+            <a href="/2018/11/10/2018/singledogday/" class="post-title-link" itemprop="url">双十一，手机淘宝，启动</a>
           
         </h1>
 
@@ -366,13 +369,13 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
               
 
-              <time title="Created: 2018-05-20 16:42:17" itemprop="dateCreated datePublished" datetime="2018-05-20T16:42:17+08:00">2018-05-20</time>
+              <time title="创建时间：2018-11-10 21:49:36" itemprop="dateCreated datePublished" datetime="2018-11-10T21:49:36+08:00">2018-11-10</time>
             </span>
           
             
@@ -382,8 +385,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-11-06 19:55:58" itemprop="dateModified" datetime="2018-11-06T19:55:58+08:00">2018-11-06</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-11-16 21:58:46" itemprop="dateModified" datetime="2018-11-16T21:58:46+08:00">2018-11-16</time>
               </span>
             
           
@@ -391,9 +394,9 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/bioinfo/" itemprop="url" rel="index"><span itemprop="name">bioinfo</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">share</span></a></span>
 
                 
                 
@@ -402,6 +405,16 @@
           
 
           
+            <span id="/2018/11/10/2018/singledogday/" class="post-meta-item leancloud_visitors" data-flag-title="双十一，手机淘宝，启动" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  
 
         </div>
       </header>
@@ -412,10 +425,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ul>
-<li><a href="http://bioinfo.au.tsinghua.edu.cn/zh" target="_blank" rel="noopener">清华大学生物信息中心</a></li>
-<li><a href="http://www.nibs.ac.cn/index.php" target="_blank" rel="noopener">北京生命科学研究所</a></li>
-</ul>
+          <p>又到了一年一度的双十一，大家又都开始剁手了<br>我就想问一句，你的花呗还完了吗？<br>哈哈哈</p>
+<h2 id><a href="#" class="headerlink" title></a><img src="http://cdn.simonyang.club/20181110-20.jpg" alt="20181110-20"></h2><p>我杨某人在这送给大家四句话<br><img src="http://cdn.simonyang.club/20181110-QQ%E6%88%AA%E5%9B%BE20181110205027.jpg" alt="20181110-QQ截图20181110205027"><br>不过再怎么说该买的还是要买的，毕竟双十一确实便宜。<br>像我这种日常穷的人，从到学校开始就没网购过，压抑着我的购物天性，等着双十一狠狠剁他一次手。<br>不过今天的主题当然不是分享我如何剁手，我来分享几个我觉得真正看得见的实惠活动，就是那种直接打折、减免没有淘宝那么多规则的。然后再理性分析一波，京东、淘宝、天猫哪个最真诚。</p>
+<h1 id="图灵社区"><a href="#图灵社区" class="headerlink" title="图灵社区"></a><a href="http://www.ituring.com.cn/" target="_blank" rel="noopener">图灵社区</a></h1><p>图灵社区是我两年多来买书最多的地方，优惠也是实打实的<br><img src="http://cdn.simonyang.club/20181110-QQ%E6%88%AA%E5%9B%BE20181110205649.jpg" alt="20181110-QQ截图20181110205649"><br>我一般都是买电子书，所以明天我肯定是要买上他两三本的。<br>实体书的话可能看起来没啥意思，不过实体书我一般都是到京东买<a href="https://sale.jd.com/act/d3jQcOWlPDB.html" target="_blank" rel="noopener">京东自营书籍</a>，买不到盗版<br><img src="http://cdn.simonyang.club/20181110-QQ%E6%88%AA%E5%9B%BE20181110205916.jpg" alt="20181110-QQ截图20181110205916"><br>另外图灵社区每周都有<a href="http://www.ituring.com.cn/tag/36527" target="_blank" rel="noopener">电子书半价</a>属于雷打不动的活动，如果喜欢的电子书哪一周半价，剁手是肯定的。</p>
+<blockquote>
+<p>原谅我一个准程序员只知道日常屯书</p>
+</blockquote>
+<h1 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h1><p>域名这个确实不是刚需是吧，不过今天我偶然看到腾讯云.club后缀的域名新用户只要一元一年，一元一年唉，啧啧啧，我又不是缺那一块钱，买一个</p>
+<blockquote>
+<p>技术宅可以趁机买个女朋友名字的域名，哪天给个惊喜<br>我是技术宅可是我没有女朋友，单身狗哭了<br><a href="https://cloud.tencent.com/act/domainsales?from=10029" target="_blank" rel="noopener">活动在这</a><br><img src="http://cdn.simonyang.club/20181110-QQ%E6%88%AA%E5%9B%BE20181110211041.jpg" alt="20181110-QQ截图20181110211041"></p>
+</blockquote>
+<h1 id="Udacity"><a href="#Udacity" class="headerlink" title="Udacity"></a>Udacity</h1><p>优达学城就是我昨天推荐的那个学习网站，这个网站，别人都说好，不过我一个穷人从来没买过他的课，不过毕竟口碑非常好，也推荐给大家，而且udacity几乎没有过活动打折，双十一他们终于有了<br><a href="https://cn.udacity.com/20181111" target="_blank" rel="noopener">Udacity</a><br><img src="http://cdn.simonyang.club/20181110-QQ%E6%88%AA%E5%9B%BE20181110211340.jpg" alt="20181110-QQ截图20181110211340"><br>优惠非常的实际粗暴，我喜欢</p>
+<hr>
+<h1 id="Last"><a href="#Last" class="headerlink" title="Last"></a>Last</h1><p>最后我来分析一波京东、天猫、淘宝到底哪个双十一最实诚<br>也就是双十一之前的涨价最少<br>比较的东西是 <a href="https://item.jd.com/11867803.html" target="_blank" rel="noopener">周志华的《机器学习》</a><br>（这也是本好书虽然我没看过）</p>
+<p>首先我们来看看京东<br><img src="http://cdn.simonyang.club/20181110-QQ%E6%88%AA%E5%9B%BE20181110211633.jpg" alt="20181110-QQ截图20181110211633"><br>他告诉我历史最低价是61.6 最高价是84.5 现在的价格是83.6 最高价附近，上涨了22元，不过右边也告诉我们，如果用上了两个活动，最低可以38.5入手，是历史最低的。</p>
+<p>让我们看看天猫</p>
+<blockquote>
+<p>天猫淘宝没有自营我就直接选综合排名第一的吧</p>
+</blockquote>
+<p>天猫这家店叫 清文图书专卖店<br><img src="http://cdn.simonyang.club/20181110-QQ%E6%88%AA%E5%9B%BE20181110212320.jpg" alt="20181110-QQ截图20181110212320"><br>很干净的下滑，最高66，最低44，目前最低，很棒</p>
+<p>最后来看看淘宝<br>淘宝这家店叫新华文轩网络书店，看名字应该是老牌书店了<br><img src="http://cdn.simonyang.club/20181110-QQ%E6%88%AA%E5%9B%BE20181110212604.jpg" alt="20181110-QQ截图20181110212604"><br>最高价73.9，最低价58，看起来明天双十一特惠价钱才是44，笑死</p>
+<blockquote>
+<p>天猫和淘宝好歹一家公司出来的差别怎么这么大呢</p>
+</blockquote>
+<p>上面用的插件是 购物党全网自动比价工具【预览版】淘宝京东美亚日亚比价、180天价格历史跟踪、降价提醒<br>（名字怎么这么长，chrome插件）</p>
+<p>祝大家剁手愉快<br><img src="http://cdn.simonyang.club/20181110-61.jpg" alt="20181110-61"></p>
 
         
       
@@ -442,21 +476,21 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/03/2018/mirrors/">
+    <link itemprop="mainEntityOfPage" href="https://blog.simonyang.club/2018/11/08/2018/uzerme/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="SSSimon Yang">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="SSSimon Yang">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/05/03/2018/mirrors/" class="post-title-link" itemprop="url">Mirrors and CDNs</a>
+            <a href="/2018/11/08/2018/uzerme/" class="post-title-link" itemprop="url">uzerme</a>
           
         </h1>
 
@@ -465,13 +499,13 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
               
 
-              <time title="Created: 2018-05-03 10:57:57" itemprop="dateCreated datePublished" datetime="2018-05-03T10:57:57+08:00">2018-05-03</time>
+              <time title="创建时间：2018-11-08 17:53:16" itemprop="dateCreated datePublished" datetime="2018-11-08T17:53:16+08:00">2018-11-08</time>
             </span>
           
             
@@ -481,8 +515,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-11-27 18:40:11" itemprop="dateModified" datetime="2018-11-27T18:40:11+08:00">2018-11-27</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-11-16 21:59:30" itemprop="dateModified" datetime="2018-11-16T21:59:30+08:00">2018-11-16</time>
               </span>
             
           
@@ -490,9 +524,9 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/record/" itemprop="url" rel="index"><span itemprop="name">record</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">share</span></a></span>
 
                 
                 
@@ -501,6 +535,16 @@
           
 
           
+            <span id="/2018/11/08/2018/uzerme/" class="post-meta-item leancloud_visitors" data-flag-title="uzerme" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  
 
         </div>
       </header>
@@ -511,760 +555,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="企业类"><a href="#企业类" class="headerlink" title="企业类"></a>企业类</h1><ul>
-<li><a href="http://mirrors.sohu.com/" target="_blank" rel="noopener">搜狐开源镜像站</a></li>
-<li><a href="http://mirrors.163.com/" target="_blank" rel="noopener">网易开源镜像站</a></li>
-<li><a href="http://mirrors.yun-idc.com/" target="_blank" rel="noopener">首都在线科技股份有限公司</a></li>
-<li><a href="https://opsx.alibaba.com/mirror" target="_blank" rel="noopener">阿里云开源镜像</a></li>
-<li><a href="http://mirror.lupaworld.com/" target="_blank" rel="noopener">LUPA</a> </li>
-<li><a href="http://centos.bitcomm.cn/" target="_blank" rel="noopener">常州贝特康姆软件技术有限公司</a></li>
-</ul>
-<h1 id="大学类"><a href="#大学类" class="headerlink" title="大学类"></a>大学类</h1><ul>
-<li><a href="http://mirrors.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">清华大学</a></li>
-<li><a href="http://mirror.dlut.edu.cn/" target="_blank" rel="noopener">大连理工大学</a></li>
-<li><a href="http://mirrors.neusoft.edu.cn/" target="_blank" rel="noopener">大连东软信息学院</a></li>
-<li><a href="http://mirrors.zju.edu.cn/" target="_blank" rel="noopener">浙江大学</a></li>
-<li><a href="http://mirror.lzu.edu.cn/" target="_blank" rel="noopener">兰州大学</a></li>
-<li><a href="http://mirror.bit.edu.cn" target="_blank" rel="noopener">北京理工大学 (IPv4 only)</a> </li>
-<li><a href="http://mirror.bit6.edu.cn" target="_blank" rel="noopener">北京理工大学 (IPv6 only)</a></li>
-<li><a href="http://debian.bjtu.edu.cn" target="_blank" rel="noopener">北京交通大学</a></li>
-<li><a href="http://ftp.sjtu.edu.cn/" target="_blank" rel="noopener">上海交通大学 (IPv4 only)</a> </li>
-<li><a href="http://ftp6.sjtu.edu.cn" target="_blank" rel="noopener">上海交通大学 (IPv6 only)</a> </li>
-<li><a href="http://mirrors.ustc.edu.cn/" target="_blank" rel="noopener">中国科学技术大学</a></li>
-<li><a href="http://mirror.neu.edu.cn/" target="_blank" rel="noopener">东北大学 (IPv4 only)</a> </li>
-<li><a href="http://mirror.neu6.edu.cn/" target="_blank" rel="noopener">东北大学 (IPv6 only)</a> </li>
-<li><a href="http://mirrors.hust.edu.cn/" target="_blank" rel="noopener">华中科技大学</a> </li>
-<li><a href="http://mirrors.cqu.edu.cn/" target="_blank" rel="noopener">重庆大学</a></li>
-</ul>
-<h1 id="PyPi-镜像"><a href="#PyPi-镜像" class="headerlink" title="PyPi 镜像"></a>PyPi 镜像</h1><ul>
-<li><a href="http://pypi.douban.com/" target="_blank" rel="noopener">豆瓣</a> </li>
-</ul>
-<h1 id="RubyGems-镜像"><a href="#RubyGems-镜像" class="headerlink" title="RubyGems 镜像"></a>RubyGems 镜像</h1><ul>
-<li><a href="http://ruby.taobao.org/" target="_blank" rel="noopener">淘宝网</a> </li>
-</ul>
-<h1 id="npm-镜像"><a href="#npm-镜像" class="headerlink" title="npm 镜像"></a>npm 镜像</h1><ul>
-<li><a href="http://cnpmjs.org/" target="_blank" rel="noopener">cnpmjs</a> </li>
-</ul>
-<h1 id="cdn"><a href="#cdn" class="headerlink" title="cdn"></a>cdn</h1><ul>
-<li><a href="http://www.bootcdn.cn/" target="_blank" rel="noopener">bootcdn</a></li>
-<li><a href="https://www.jsdelivr.com/" target="_blank" rel="noopener">Staticfile CDN</a></li>
-<li><a href="https://www.staticfile.org/" target="_blank" rel="noopener">jsDelivr</a></li>
-<li><a href="http://jscdn.upai.com/" target="_blank" rel="noopener">又拍云JS库加速服务</a></li>
-<li><a href="https://cdnjs.com/" target="_blank" rel="noopener">cdnjs</a></li>
-<li><a href="https://www.beecdn.com/" target="_blank" rel="noopener">beecdn</a></li>
-</ul>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/27/2018/books/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/04/27/2018/books/" class="post-title-link" itemprop="url">My books</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2018-04-27 16:44:21" itemprop="dateCreated datePublished" datetime="2018-04-27T16:44:21+08:00">2018-04-27</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-11-27 18:39:41" itemprop="dateModified" datetime="2018-11-27T18:39:41+08:00">2018-11-27</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/books/" itemprop="url" rel="index"><span itemprop="name">books</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>机器学习</p>
+          <p>今天废话不多说，就推荐一个网站<br>网址如下<br><a href="https://uzer.me/" target="_blank" rel="noopener">Uzer.me</a><br>手快的人已经把网址复制粘贴打开浏览器看看我说的什么玩意了<br>那麻烦你下边不用看了如果切中了你的痛点你肯定会记住这个网址的    </p>
+<hr>
+<p>手慢的人还在犹豫要不要信我<br>还在想我葫芦里到底卖的什么药<br>我就姑且再废话几句安利一下<br>如果你有以下几点需求  </p>
 <ul>
-<li>数学之美</li>
-<li>稀疏统计学习与应用</li>
-<li>应用随机过程概率模型导论</li>
-<li>数据挖掘导论</li>
-<li>深度学习 中文版(pdf)</li>
-<li>Python数据科学手册(pdf)</li>
-<li>Python机器学习基础教程(pdf)</li>
-<li>机器学习实战(pdf)</li>
-<li>deep learning(English)(pdf)</li>
-<li><a href="https://jakevdp.github.io/PythonDataScienceHandbook/" target="_blank" rel="noopener">python数据科学手册(在线版)(English)</a></li>
-<li><a href="https://github.com/wesm/pydata-book" target="_blank" rel="noopener">利用python进行数据分析(在线版)(English)</a></li>
+<li>Photoshop、Matlab、Xmind偶尔使用但是不想装到电脑上</li>
+<li>正版党但是买不起Photoshop、Matlab正版</li>
+<li>手边没有电脑但是急需处理Office文档</li>
+<li>还有暂时我没想到。。</li>
 </ul>
-<p>数学</p>
-<ul>
-<li>程序员的数学(pdf)</li>
-<li>程序员的数学2概率统计(pdf)</li>
-<li>程序员的数学3线性代数(pdf)</li>
-<li>具体数学-计算机科学基础(pdf)</li>
-<li>统计学七支柱(pdf)</li>
-</ul>
-<p>Python</p>
-<ul>
-<li>Python袖珍指南</li>
-<li>用Python写网络爬虫</li>
-<li>Python数据分析与挖掘实战</li>
-<li>Python数据分析</li>
-<li>Python基础教程(第二版)</li>
-<li>Python编程实战 运用设计模式、并发和程序库创建高质量程序</li>
-<li>编写高质量代码 改善Python程序的91个建议</li>
-<li>Python Cookbook(pdf)</li>
-<li>Flask Web开发：基于Python的Web应用开发实战(pdf)</li>
-<li>Head First Python(pdf)</li>
-<li>Python编程：从入门到实践(pdf)</li>
-<li>Python基础教程(第三版)(pdf)</li>
-<li>Python网络数据采集(pdf)</li>
-<li>流畅的Python(pdf)</li>
-</ul>
-<p>c</p>
-<ul>
-<li>C++ Primer Plus(pdf)</li>
-<li>C和指针(pdf)</li>
-<li>C陷阱与缺陷(pdf)</li>
-<li>C专家编程(pdf)</li>
-<li>Effective C(pdf)</li>
-<li>More Effective C(pdf)</li>
-</ul>
-<p>Java</p>
-<ul>
-<li>Java编程思想</li>
-<li>Head First Java</li>
-</ul>
-<p>Android</p>
-<ul>
-<li>第一行代码——Android(pdf)</li>
-</ul>
-<p>JavaScipt</p>
-<ul>
-<li>JavaScript高级语言程序设计</li>
-<li>你不知道的JavasScript(上卷)</li>
-</ul>
-<p>Nodejs</p>
-<ul>
-<li>深入浅出Node.js</li>
-</ul>
-<p>Haskell</p>
-<ul>
-<li>魔力Haskell</li>
-</ul>
-<p>R</p>
-<ul>
-<li>R语言实战</li>
-<li>ggplot2:数据分析与图形艺术</li>
-</ul>
-<p>算法</p>
-<ul>
-<li>算法(第4版)</li>
-<li>算法导论(pdf)</li>
-</ul>
-<p>网络</p>
-<ul>
-<li>TCP/IP详解卷1:协议</li>
-<li>HTTP_2基础教程(pdf)</li>
-<li>TCP-IP详解卷1：协议(pdf)</li>
-<li>TCP-IP详解卷2：实现(pdf)</li>
-<li>TCP-IP详解卷3：TCP事务协议，HTTP，NNTP和UNIX域协议(pdf)</li>
-<li>图解HTTP(pdf)</li>
-<li>网络是怎样连接的(pdf)</li>
-</ul>
-<p>计算机</p>
-<ul>
-<li>深入理解计算机系统</li>
-<li>计算机程序的构造与解释</li>
-<li>操作系统-精髓与设计原理</li>
-<li>编码 隐匿在计算机软硬件背后的语言</li>
-<li>程序是怎样跑起来的(pdf)</li>
-<li>计算机是怎样跑起来的(pdf)</li>
-</ul>
-<p>设计模式</p>
-<ul>
-<li>Head First 设计模式</li>
-</ul>
-<p>Bioinformatics</p>
-<ul>
-<li>生物信息学(李霞,刘建波)</li>
-<li>生物信息学(陈铭)</li>
-<li>Bioinformatics with Python Cookbook(English)(pdf)</li>
-<li>Bioinformatics Data Skills: Reproducible and Robust Research with Open Source Tools(English)(pdf)</li>
-</ul>
-<p>Linux</p>
-<ul>
-<li>鸟哥的Linux私房菜基础学习篇(第三版)(Kindle)</li>
-</ul>
-<p>数据库</p>
-<ul>
-<li>SQL进阶教程(pdf)</li>
-<li>SQL基础教程(pdf)</li>
-</ul>
-<p>安全</p>
-<ul>
-<li><a href="/2018/05/25/crypto">图解密码技术(图书馆)(已读)</a></li>
-</ul>
-<p>杂</p>
-<ul>
-<li>人工智能简史</li>
-<li>得未曾有</li>
-<li>一个人的朝圣</li>
-<li>春宴</li>
-</ul>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/27/2018/urls/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/04/27/2018/urls/" class="post-title-link" itemprop="url">有用的网站</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2018-04-27 16:07:07" itemprop="dateCreated datePublished" datetime="2018-04-27T16:07:07+08:00">2018-04-27</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-11-27 18:40:42" itemprop="dateModified" datetime="2018-11-27T18:40:42+08:00">2018-11-27</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/record/" itemprop="url" rel="index"><span itemprop="name">record</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>网站汇集</p>
-<ul>
-<li><a href="#">云端办公</a></li>
-</ul>
-<p>编程相关</p>
-<ul>
-<li><a href="https://visualgo.net/zh" target="_blank" rel="noopener">数据结构和算法可视化</a></li>
-<li><a href="http://www.pythontutor.com/" target="_blank" rel="noopener">代码运行可视化</a></li>
-<li><a href="https://leetcode-cn.com/" target="_blank" rel="noopener">程序员刷题</a></li>
-<li><a href="http://www.runoob.com/" target="_blank" rel="noopener">菜鸟教程</a></li>
-</ul>
-<p>在线书籍</p>
-<ul>
-<li><a href="https://jakevdp.github.io/PythonDataScienceHandbook/" target="_blank" rel="noopener">Python数据科学手册</a></li>
-<li><a href="https://exacity.github.io/deeplearningbook-chinese/" target="_blank" rel="noopener">深度学习</a></li>
-</ul>
-<p>大数据比赛</p>
-<ul>
-<li><a href="https://tianchi.aliyun.com/" target="_blank" rel="noopener">天池</a></li>
-<li><a href="http://www.pkbigdata.com/" target="_blank" rel="noopener">DataCastle</a></li>
-<li><a href="http://www.datafountain.cn/#/" target="_blank" rel="noopener">DataFountain</a></li>
-<li><a href="https://www.kesci.com/" target="_blank" rel="noopener">科赛网</a></li>
-<li><a href="http://jddc.jd.com/" target="_blank" rel="noopener">京东jddc</a></li>
-<li><a href="http://dianshi.baidu.com/" target="_blank" rel="noopener">点石</a></li>
-</ul>
-<p>工具</p>
-<ul>
-<li><a href="http://bigjpg.com/" target="_blank" rel="noopener">人工智能图片放答</a></li>
-<li><a href="https://www.iloveimg.com/" target="_blank" rel="noopener"></a></li>
-<li><a href="https://www.banwagong8.com/" target="_blank" rel="noopener">搬瓦工</a></li>
-<li><a href="https://www.wondercv.com/" target="_blank" rel="noopener">简历制作</a></li>
-</ul>
-<p>资源</p>
-<ul>
-<li><a href="https://pixabay.com/" target="_blank" rel="noopener">免费高清晰度照片</a></li>
-<li><a href="http://iconfont.cn/" target="_blank" rel="noopener">图标库</a></li>
-<li><a href="http://www.chongbuluo.com/" target="_blank" rel="noopener">虫部落</a></li>
-<li><a href="http://www.btwhat.info/" target="_blank" rel="noopener">Btbook</a></li>
-</ul>
-<p>博客模板</p>
-<ul>
-<li><a href="http://stockholmlanding.select-themes.com/" target="_blank" rel="noopener">stockholm</a></li>
-<li><a href="https://pixelarity.com/" target="_blank" rel="noopener">pixelarity</a></li>
-<li><a href="https://themeskingdom.com/wordpress-themes/" target="_blank" rel="noopener">WordPress Themes</a></li>
-<li><a href="https://html5up.net/" target="_blank" rel="noopener">html5up</a></li>
-<li><a href="http://www.nextdesignweb.com/" target="_blank" rel="noopener">nextdesin</a></li>
-</ul>
-<p>chrome插件</p>
-<ul>
-<li><a href="http://tanqingbo.com/2018/05/27/%E5%AE%9E%E7%94%A8%E4%B8%94%E5%A0%AA%E7%A7%B0%E7%A5%9E%E5%99%A8%E7%9A%84Chrome%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90/" target="_blank" rel="noopener">汇总</a><br>墙内可用</li>
-<li><a href="https://chrome-extension-downloader.com/" target="_blank" rel="noopener">chrome extension downloader</a></li>
-<li><a href="https://www.chromefor.com/" target="_blank" rel="noopener">chrome for</a><br>思维导图</li>
-<li><a href="https://sketchboard.me" target="_blank" rel="noopener">SketchBoard</a></li>
-</ul>
-<p>按键精灵</p>
-<ul>
-<li><a href="https://www.autohotkey.com/" target="_blank" rel="noopener">按键精灵</a></li>
-</ul>
-<p>pdf及其他文档处理</p>
-<ul>
-<li><a href="https://lightpdf.com/zh/" target="_blank" rel="noopener">lightPDF</a></li>
-<li><a href="https://smallpdf.com/" target="_blank" rel="noopener">smallpdf</a></li>
-</ul>
-<p>实时语音转文字</p>
-<ul>
-<li>[搜狗听写app]</li>
-</ul>
-<p>手机电脑合作</p>
-<ul>
-<li>[袋鼠输入]</li>
-<li>[向日葵远程控制]</li>
-</ul>
-<p>云端办公</p>
-<ul>
-<li><p><a href="https://uzer.me/" target="_blank" rel="noopener">uzer</a></p>
-</li>
-<li><p><a href="https://devdocs.io/" target="_blank" rel="noopener">API文档集合</a></p>
-</li>
-<li><p><a href="https://www.datacamp.com/home" target="_blank" rel="noopener">datacamp</a></p>
-</li>
-</ul>
-<p>艺术二维码 <a href="http://www.9thws.com/" target="_blank" rel="noopener">http://www.9thws.com/</a></p>
-<p>学习</p>
-<ul>
-<li><a href="https://www.coursera.org/" target="_blank" rel="noopener">Coursea</a></li>
-<li><a href="https://open.163.com/" target="_blank" rel="noopener">网易公开课</a></li>
-</ul>
-<p>高清图片搜集</p>
-<ul>
-<li><a href="https://unsplash.com/" target="_blank" rel="noopener">unsplash</a></li>
-<li><a href="https://visualhunt.com/" target="_blank" rel="noopener"></a></li>
-<li><a href="https://www.pexels.com/" target="_blank" rel="noopener"></a></li>
-<li><a href="https://pixabay.com/" target="_blank" rel="noopener"></a></li>
-<li><a href="https://magdeleine.co/" target="_blank" rel="noopener"></a></li>
-<li><a href="http://www.51yuansu.com/" target="_blank" rel="noopener"></a></li>
-<li><a href="https://www.peecheey.com/" target="_blank" rel="noopener"></a></li>
-</ul>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/27/2018/apache/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/04/27/2018/apache/" class="post-title-link" itemprop="url">Apache Mod_wsgi Django Anaconda Python3 配置</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2018-04-27 16:07:07" itemprop="dateCreated datePublished" datetime="2018-04-27T16:07:07+08:00">2018-04-27</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-11-27 18:39:32" itemprop="dateModified" datetime="2018-11-27T18:39:32+08:00">2018-11-27</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/server/" itemprop="url" rel="index"><span itemprop="name">server</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><em>本文假设读者具有一定的Linux命令行和python基础</em></p>
-<p>运行环境</p>
-<pre><code>Centos-7.4
-Anaconda-Python3.6.4
-Django-2.0.4
-httpd-2.4.33</code></pre><p>服务器为腾讯云服务器，httpd是Apache中的服务，安装httpd需要依赖apr、apr-util、pcre<br>python选用anaconda并且使用conda虚拟环境</p>
-<h1 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h1><p>首先安装gcc编译器，gcc为编译必须，c++编译器和expat-devel依赖为pcre安装所必须</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc</span><br><span class="line">yum install gcc-c++</span><br><span class="line">yum install expat-devel</span><br></pre></td></tr></table></figure>
-
-<p>下载源码安装包，注意当使用apr-util，apr1.6版本编译安装httpd时出现xml错误，在/usr/local/httpd/目录下只有modules文件夹。因此1.6版本不适用于httpd的最新版，因此选用1.5版本</p>
-<p>选用<a href="https://mirrors.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">清华镜像</a>下载速度更快</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget http://archive.apache.org/dist/apr/apr-1.5.2.tar.gz</span><br><span class="line">wget http://archive.apache.org/dist/apr/apr-util-1.5.4.tar.gz</span><br><span class="line">wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.40.tar.gz</span><br><span class="line">wget https://mirrors.tuna.tsinghua.edu.cn/apache/httpd/httpd-2.4.33.tar.gz</span><br><span class="line">wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-5.1.0-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
-
-<p>解压</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar -xzf pcre-8.40.tar.gz</span><br><span class="line">tar -xzf httpd-2.4.33.tar.gz</span><br><span class="line">tar -xzf apr-util-1.5.4.tar.gz</span><br><span class="line">tar -xzf apr-1.5.2.tar.gz</span><br></pre></td></tr></table></figure>
-
-<p>安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">cd apr-1.5.2</span><br><span class="line">./configure --prefix=/usr/local/apr</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line">cd ../apr-util-1.5.4</span><br><span class="line">./configure --prefix=/usr/local/apr-util --with-apr=/usr/local/apr</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line">cd ../pcre-8.40</span><br><span class="line">./configure --prefix=/usr/local/pcre --with-apr=/usr/local/apr</span><br><span class="line"></span><br><span class="line">cd ../httpd-2.4.33</span><br><span class="line">./configure --prefix=/usr/local/httpd --with-pcre=/usr/local/pcre --with-apr=/usr/local/apr --with-apr-util=/usr/local/apr-util</span><br><span class="line">make </span><br><span class="line">make install </span><br><span class="line"></span><br><span class="line">cd ..</span><br><span class="line">bash Anaconda3-5.1.0-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
-
-<p>将Anaconda命令和httpd启动命令添加到path</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br></pre></td></tr></table></figure>
-
-<p>在最后添加两行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export PATH=/usr/local/httpd/bin:$PATH</span><br><span class="line">export PATH=/root/anaconda3/bin:$PATH</span><br></pre></td></tr></table></figure>
-
-<p>使profile文件起作用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">. /etc/profile</span><br></pre></td></tr></table></figure>
-
-<p>注意.和/之间有个空格<br>试一下httpd行不行<br>输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httpd -k start</span><br></pre></td></tr></table></figure>
-
-<p>访问服务器的ip地址，可以看到页面显示it works</p>
-<p>相应的，重新启动和停止的命令为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">httpd -k restart</span><br><span class="line">httpd -k stop</span><br></pre></td></tr></table></figure>
-
-<h1 id="Python-Django"><a href="#Python-Django" class="headerlink" title="Python Django"></a>Python Django</h1><p>下面开始配置python django</p>
-<p>conda添加清华源</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span><br><span class="line">conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure>
-
-<p>创建django安装的python3.6环境</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda create -n django python=3.6</span><br><span class="line">source activate django</span><br><span class="line">pip install django</span><br></pre></td></tr></table></figure>
-
-<p>安装mod_wsgi</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install mod_wsgi</span><br></pre></td></tr></table></figure>
-
-<p>获取mod_wsgi</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mod_wsgi-express module-config</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LoadModule wsgi_module &quot;/root/anaconda3/envs/django/lib/python3.6/site-packages/mod_wsgi/server/mod_wsgi-py36.cpython-36m-x86_64-linux-gnu.so&quot;</span><br><span class="line">WSGIPythonHome &quot;/root/anaconda3/envs/django&quot;</span><br></pre></td></tr></table></figure>
-
-<p>修改httpd配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/httpd/conf</span><br><span class="line">vim httpd.conf</span><br></pre></td></tr></table></figure>
-
-<p>LoadModule中添加一行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule wsgi_module &quot;/root/anaconda3/envs/django/lib/python3.6/site-packages/mod_wsgi/server/mod_wsgi-py36.cpython-36m-x86_64-linux-gnu.so&quot;</span><br></pre></td></tr></table></figure>
-
-<p>将这一行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Include conf/extra/httpd-vhosts.conf</span><br></pre></td></tr></table></figure>
-
-<p>取消注释<br>相应的修改httpd-vhosts.conf文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd extra</span><br><span class="line">vim httpd-vhosts.conf</span><br></pre></td></tr></table></figure>
-
-<p>全部注释掉之后添加下面部分</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">WSGIPythonPath /root/anaconda3/envs/django/lib/python3.6/site-packages:/home/website</span><br><span class="line">WSGIPythonHome /root/anaconda3/envs/django</span><br><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">DocumentRoot /home/website/website</span><br><span class="line">ServerName localhost:80</span><br><span class="line">ServerAdmin jstsyhyjk@163.com</span><br><span class="line"></span><br><span class="line">WSGIScriptAlias / /home/website/website/wsgi.py</span><br><span class="line">Alias /static/ /home/website/static/</span><br><span class="line">&lt;Directory &quot;/home/website&quot;&gt;</span><br><span class="line">Require all granted</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
-
-<p>先来看下我django项目的目录结构<br>这是/home/website内的文件树形图（已省略一部分无关内容）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">|-- db.sqlite3</span><br><span class="line">|-- manage.py</span><br><span class="line">|-- static</span><br><span class="line">|-- templates</span><br><span class="line">|   `-- index.html</span><br><span class="line">|-- website</span><br><span class="line">|   |-- __init__.py</span><br><span class="line">|   |-- settings.py</span><br><span class="line">|   |-- urls.py</span><br><span class="line">|   |-- view.py</span><br><span class="line">|   `-- wsgi.py</span><br></pre></td></tr></table></figure>
-
-<p>配置wsgi.py</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">from django.core.wsgi import get_wsgi_application</span><br><span class="line">os.environ[&apos;PYTHON_EGG_CACHE&apos;] = &apos;/tmp/.python-eggs&apos;</span><br><span class="line">os.environ.setdefault(&quot;DJANGO_SETTINGS_MODULE&quot;, &quot;website.settings&quot;)</span><br><span class="line">application = get_wsgi_application()</span><br></pre></td></tr></table></figure>
-
-<p>同时在settings.py中修改这一部分，如果不修改，django会拒绝外部的访问</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALLOWED_HOSTS = [&quot;your server ip&quot;]</span><br></pre></td></tr></table></figure>
-
-<p>WSGIPythonPath 取上面mod_wsgi输出的路径的site-packages部分，/home/website是我django网站存放的路径<br>WSGIPythonHome 与上面mod_wsgi输出的相同<br>DocumentRoot 就是django主要文件存放的地方<br>WSGIScriptAlias 将wsgi.py的地址映射为/<br>Alias 将存放静态文件的文件姐映射到/static/<br>Directory是为了提升所需要目录的权限  </p>
-<p>一切就绪之后,重新启动</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httpd -k restart</span><br></pre></td></tr></table></figure>
-
-<p>访问域名，发现没成功<br>查看error_log，默认位置在logs内</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /usr/local/httpd/logs/error_log</span><br></pre></td></tr></table></figure>
-
-<p>可以看到</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Permission denied: mod_wsgi (pid=6696): Unable to stat Python home /root/anaconda3/envs/django. Python interpreter may not be able to be initialized correctly. Verify the supplied path and access permissions for whole of the path.</span><br><span class="line">Fatal Python error: Py_Initialize: Unable to get the locale encoding</span><br><span class="line">ModuleNotFoundError: No module named &apos;encodings&apos;</span><br></pre></td></tr></table></figure>
-
-<p>表示权限不够。因此提升权限，亲测仅提升anaconda文件夹权限不能解决，因此</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 755 /root</span><br><span class="line">httpd -k start</span><br></pre></td></tr></table></figure>
-
-<p>访问成功<br>error_log在网站内部代码运行错误时还会存放错误信息,用于查到代码运行中可能出现的bug<br>（注意配置中的所有路径信息，如果其中包含括号，则需要在两侧加上引号）</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/26/2018/overview/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/04/26/2018/overview/" class="post-title-link" itemprop="url">2018不能忘记</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2018-04-26 22:19:28" itemprop="dateCreated datePublished" datetime="2018-04-26T22:19:28+08:00">2018-04-26</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-11-27 18:40:27" itemprop="dateModified" datetime="2018-11-27T18:40:27+08:00">2018-11-27</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/big-event/" itemprop="url" rel="index"><span itemprop="name">big event</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/big-event/2018/" itemprop="url" rel="index"><span itemprop="name">2018</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>2018-03-26 <a href="https://www.zhihu.com/question/61486078" target="_blank" rel="noopener">武汉理工大学 陶崇园坠楼</a></li>
-<li>2018-04-26 <a href="https://www.zhihu.com/question/274459587" target="_blank" rel="noopener">厦门大学 田佳良事件</a>  </li>
-<li>2018-04-26 <a href="https://www.zhihu.com/question/274828827" target="_blank" rel="noopener">天津大学 学生体测猝死</a></li>
-<li>2018-04-29 <a href="https://www.zhihu.com/question/275021771" target="_blank" rel="noopener">四川遂宁 男子公交车上殴打小孩</a></li>
-<li>2018-04-28 <a href="https://www.zhihu.com/question/275020131" target="_blank" rel="noopener">淘宝网大面积刊登性别歧视广告</a></li>
-<li>2018-05-03 <a href="https://zhuanlan.zhihu.com/p/36356167" target="_blank" rel="noopener">小米集团 港交所提交招股说明书</a></li>
-<li>2018-05-04 <a href="http://news.sina.com.cn/c/2018-05-05/doc-ifzfkmth9361216.shtml" target="_blank" rel="noopener">北大校长就口误事件道歉:我并不是一个完美的人</a></li>
-<li>2018-05-11 <a href="https://www.zhihu.com/question/276575922/answer/388549186" target="_blank" rel="noopener">空姐搭乘滴滴顺风车被杀害</a></li>
-</ul>
+<p>Bingo！<br>这个网站适合你<br>如你所想，这个网站就是远程使用Office系列套件、Matlab、Xmind、Photoshop等软件的地方<br>如下<br><img src="http://cdn.simonyang.club/2018118-QQ%E6%88%AA%E5%9B%BE20181108175936.jpg" alt="2018118-QQ截图20181108175936"><br>不过Uzer.me打开火狐浏览器冲浪感觉怪怪的emm<br>当然，你知道这个网站之后，你还需要一个好的网速<br>今天就到这里，觉得不错请转发，有建议请留言！<br><img src="http://cdn.simonyang.club/2018118-54.jpg" alt="2018118-54"></p>
 
         
       
@@ -1288,7 +588,7 @@ httpd-2.4.33</code></pre><p>服务器为腾讯云服务器，httpd是Apache中�
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1311,10 +611,10 @@ httpd-2.4.33</code></pre><p>服务器为腾讯云服务器，httpd是Apache中�
 
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc" data-target="post-toc-wrap">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -1326,7 +626,10 @@ httpd-2.4.33</code></pre><p>服务器为腾讯云服务器，httpd是Apache中�
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">John Doe</p>
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.jpg"
+      alt="SSSimon Yang">
+  <p class="site-author-name" itemprop="name">SSSimon Yang</p>
   <div class="site-description motion-element" itemprop="description"></div>
 </div>
   <nav class="site-state motion-element">
@@ -1334,8 +637,8 @@ httpd-2.4.33</code></pre><p>服务器为腾讯云服务器，httpd是Apache中�
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
     
@@ -1377,8 +680,8 @@ httpd-2.4.33</code></pre><p>服务器为腾讯云服务器，httpd是Apache中�
         
           
         
-        <span class="site-state-item-count">14</span>
-        <span class="site-state-item-name">categories</span>
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span>
         </a>
       </div>
     
@@ -1395,11 +698,35 @@ httpd-2.4.33</code></pre><p>服务器为腾讯云服务器，httpd是Apache中�
           
         
         <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">tags</span>
+        <span class="site-state-item-name">标签</span>
         </a>
       </div>
     
   </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/sssimonyang" title="GitHub &rarr; https://github.com/sssimonyang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:yangjinkang@126.com" title="E-Mail &rarr; mailto:yangjinkang@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
 
 
 
@@ -1416,15 +743,12 @@ httpd-2.4.33</code></pre><p>服务器为腾讯云服务器，httpd是Apache中�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">SSSimon Yang</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.3.0</div>
 
         
 
@@ -1470,6 +794,7 @@ httpd-2.4.33</code></pre><p>服务器为腾讯云服务器，httpd是Apache中�
 
 
 
+  <script src="/js/local-search.js?v=7.3.0"></script>
 
 
 
@@ -1482,14 +807,40 @@ httpd-2.4.33</code></pre><p>服务器为腾讯云服务器，httpd是Apache中�
 
 
 
+
+
+  
 
   
 
   
 
-  
-
 
   
+
+<script>
+NexT.utils.getScript('http://cdn.simonyang.club/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'vi0YPoBao45UrtepGDCCd40B-gzGzoHsz',
+    appKey: 'iLM1yw4Ul3CpE5AijBWWynyh',
+    placeholder: 'Let me comment',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
 </body>
 </html>
